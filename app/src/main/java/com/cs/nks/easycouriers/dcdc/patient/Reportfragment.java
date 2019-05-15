@@ -256,23 +256,29 @@ public class Reportfragment extends Fragment {
             }
 
             String status = projectPhoto.getCaType();
+            String txt_status="----";
+           // txtvw_status
             if (status.equals("2")) {   // Approved
                 holder.column.setBackgroundColor(getResources().getColor(R.color.green_material2));
-                holder.Status.setText("Approved");
-
+                txt_status="Approved";
             } else if (status.equals("1")) { // Under Process
                 holder.column.setBackgroundColor(getResources().getColor(R.color.yellow_material));
-                holder.Status.setText("Under Process");
+                txt_status="Under Process";
             } else if (status.equals("3")) { // Rejected
                 holder.column.setBackgroundColor(getResources().getColor(R.color.red_material));
-                holder.Status.setText("Rejected");
+                txt_status="Rejected";
             } else if (status.equals("4")) {// Date expired
                 holder.column.setBackgroundColor(getResources().getColor(R.color.orange_material));
-                holder.Status.setText("Date Expired");
+                txt_status="Date Expired";
+
             } else if (status.equals("5")) {// Dialysis Done
                 holder.column.setBackgroundColor(getResources().getColor(R.color.green_material2));
-                holder.Status.setText("Completed");
+                txt_status="Completed";
             }
+            holder.Status.setText(txt_status);
+            holder.txtvw_status.setText(txt_status);
+
+
             if (status.equals("5")) {// Completed-Dialysis Done
                 holder.btn_Report.setVisibility(View.VISIBLE);
                 holder.imgvw_delete.setVisibility(View.GONE);
@@ -354,7 +360,7 @@ public class Reportfragment extends Fragment {
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
-            TextView date, time, phone, email, center, address, day1, Status,remarks;
+            TextView date, time, phone, email, center, address, day1, Status,remarks,txtvw_status;
             LinearLayout imgvw_edit, imgvw_delete, btn_Report,btn_feedback;
             TextView index_no;
 
@@ -387,7 +393,7 @@ public class Reportfragment extends Fragment {
 
                 btn_feedback = convertview.findViewById(R.id.btn_feedback);
                 Status = (TextView) convertview.findViewById(R.id.Status);
-
+                txtvw_status = (TextView) convertview.findViewById(R.id.txtvw_status);
 
             }
         }
@@ -453,7 +459,7 @@ public class Reportfragment extends Fragment {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Log.d("Response", response);
-                            Toast.makeText(getActivity(),response,Toast.LENGTH_SHORT).show();
+                         //   Toast.makeText(getActivity(),response,Toast.LENGTH_SHORT).show();
                             String status = jsonObject.getString("status");
                             String msg = jsonObject.getString("msg");
                             if (status.equals("1")) {
