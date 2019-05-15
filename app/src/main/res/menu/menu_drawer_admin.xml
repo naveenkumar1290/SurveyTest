@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+ <!--   <group
+        android:id="@+id/group_1"
+        android:checkableBehavior="single">-->
+        <item
+            android:id="@+id/nav_Home"
+            android:icon="@drawable/ic_home_blackj_24dp"
+            android:title="Dashboard" />
+       <!-- <item
+            android:id="@+id/nav_book"
+            android:icon="@drawable/ic_local_hospital_black_24dp"
+            android:title="Book an Appointment" />
+        <item
+            android:id="@+id/nav_AboutUs"
+            android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
+            android:title="Your Schedule" />
+
+        <item
+            android:id="@+id/nav_HowItWorks"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:title="Reports" />-->
+
+
+
+        <!--       <item
+                   android:id="@+id/nav_WhyChooseUs"
+                   android:icon="@drawable/how_it_works"
+                   android:title="Why Choose Us" />
+               <item
+                   android:id="@+id/nav_Services"
+                   android:icon="@drawable/operator"
+                   android:title="Services" />
+
+               <item
+                   android:id="@+id/nav_rateCard"
+                   android:icon="@drawable/blog"
+                   android:title="Blogs" />
+               <item
+                   android:id="@+id/nav_myAccount"
+                   android:icon="@drawable/login_1"
+                   android:title="My Account" />
+
+               <item
+                   android:id="@+id/nav_ContactUs"
+                   android:icon="@drawable/contact_us"
+                   android:title="Contact Us" />-->
+
+
+  <!--  </group>-->
+
+
+    <!--<group
+        android:id="@+id/grp2"
+        android:checkableBehavior="single">-->
+     <!--   <item
+            android:id="@+id/nav_ChangePass"
+            android:icon="@drawable/ic_https_black_24dp"
+            android:title="Change Password" />-->
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="Logout" />
+        <!--
+                <item
+                    android:id="@+id/example_id"
+                    android:icon="@drawable/logout"
+                    android:title="Logout"
+
+                    app:actionLayout="@layout/menu_counter"
+
+                    />-->
+<!--    </group>-->
+
+    <!-- <item android:title="">
+         <menu>
+
+             <item
+                 android:id="@+id/nav_logout"
+                 android:icon="@drawable/logout"
+                 android:title="Logout" />
+         </menu>
+     </item>-->
+
+</menu>

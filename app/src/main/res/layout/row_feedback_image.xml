@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardElevation="0sp"
+    card_view:cardUseCompatPadding="true">
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+    >
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo_header"
+            />
+
+        <LinearLayout
+            android:id="@+id/cross"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:orientation="vertical"
+            android:gravity="right|top"
+         android:paddingLeft="10dp"
+
+            android:paddingBottom="10dp"
+
+            >
+
+            <ImageView
+
+                android:src="@drawable/cross"
+                android:scaleType="fitCenter"
+                android:layout_height="15dp"
+                android:layout_width="15dp"
+                android:layout_gravity="right|top"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+
+    </FrameLayout>
+
+
+</android.support.v7.widget.CardView>

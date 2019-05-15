@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardElevation="5sp"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/row_jobFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="#E4DFDF"
+
+            />
+
+        <Button
+            android:id="@+id/serial_no"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="-15dp"
+            android:background="@drawable/round_corner"
+            android:elevation="4dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="1"
+            android:textColor="#fff"
+            android:textSize="17sp"
+            android:textStyle="bold"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/CustomTextView_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Center Name" />
+
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/CustomTextView_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/CustomTextView_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Address" />
+
+                <TextView
+                    android:id="@+id/user_type"
+                    style="@style/CustomTextView_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
+                android:layout_marginBottom="@dimen/list_showFile_rowTopMargin"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/CustomTextView_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Day" />
+
+                <TextView
+                    android:id="@+id/master"
+                    style="@style/CustomTextView_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+            </LinearLayout>
+
+            <!--  <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
+                  android:orientation="horizontal">
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                      android:text="Phone"
+                      style="@style/CustomTextView_title" />
+
+                  <TextView
+                      android:id="@+id/phone"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text=""
+                      style="@style/CustomTextView_text" />
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
+                  android:orientation="horizontal">
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                      android:text="E-mail"
+                      style="@style/CustomTextView_title" />
+
+                  <TextView
+                      android:id="@+id/email"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text=""
+                      style="@style/CustomTextView_text" />
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="@dimen/list_showFile_rowTopMargin"
+                  android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
+                  android:orientation="horizontal"
+
+                  >
+
+
+                  &lt;!&ndash; <CheckBox
+                       android:id="@+id/checkBox"
+                       android:layout_width="25dp"
+                       android:layout_height="25dp"
+
+                       android:text="" />
+   &ndash;&gt;
+
+              </LinearLayout>
+  -->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgvw_edit"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="top"
+                android:drawableTint="@color/icon_color"
+
+                android:src="@drawable/edit" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

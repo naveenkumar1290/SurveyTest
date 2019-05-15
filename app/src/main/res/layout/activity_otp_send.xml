@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:gravity="center"
+   >
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/txt_size"
+        android:gravity="center"
+        android:text="Enter your mobile number"
+        android:layout_marginTop="@dimen/et_margin_top"
+        android:textColor="@color/primaryTextColor"
+        android:textStyle="bold"
+
+        />
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sub_txt_size"
+        android:text="A 4-digit OTP will be sent by sms"
+        android:textColor="@color/primaryTextColor"
+        />
+    <EditText
+        android:id="@+id/et_OTP"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/CustomEdittextStyle"
+
+        android:hint="Mobile No."
+        android:inputType="number"
+        android:maxLength="4"
+        />
+
+    <CheckBox
+        android:id="@+id/chkbox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+       android:text="I am not a Robot"
+        android:checked="false"
+        />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_size"
+        android:background="@drawable/button_shape"
+        android:text="Next"
+        android:layout_marginTop="20dp"
+        style="@style/CustomButtonStyle"
+        />
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+
+        >
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

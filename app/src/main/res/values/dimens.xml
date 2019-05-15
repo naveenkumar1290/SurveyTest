@@ -1,0 +1,44 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="et_padding">10dp</dimen>
+    <dimen name="et_margin_top">10dp</dimen>
+    <dimen name="btn_size">40dp</dimen>
+    <dimen name="et_height">40dp</dimen>
+    <dimen name="et_text_size">17sp</dimen>
+    <dimen name="btn_text_size">15sp</dimen>
+    <dimen name="app_icon_size">20dp</dimen>
+
+    <dimen name="txt_size">20sp</dimen>
+    <dimen name="sub_txt_size">17sp</dimen>
+    <dimen name="et_hint_txt_size">16sp</dimen>
+    <dimen name="listheight">160sp</dimen>
+    <dimen name="missinglist">60sp</dimen>
+    <dimen name="list_showFile_rowTopMargin">07dp</dimen>
+    <dimen name="list_showFile_rowTextsize">12sp</dimen>
+    <dimen name="textSize_homeActivity">18sp</dimen>
+    <dimen name="textSize_admin_dash">22sp</dimen>
+    <dimen name="textviewsize_homeActivity">40dp</dimen>
+    <dimen name="ringSize">60dp</dimen>
+    <dimen name="item_padding">50dp</dimen>
+    <dimen name="view_width">10dp</dimen>
+    <dimen name="time_gap_text_size">16sp</dimen>
+    <dimen name="time_gap_title_size">19sp</dimen>
+    <dimen name="img_size_whtsinside">40dp</dimen>
+    <dimen name="home_icon_size">45dp</dimen>
+    <dimen name="home_ll_size">150dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="dot_thickness">3dp</dimen>
+    <!--  <dimen name="home_icon_size">70dp</dimen>-->
+    <dimen name="star_height">40dp</dimen>
+    <dimen name="star_width">30dp</dimen>
+
+    <dimen name="star_heightSmall">20dp</dimen>
+    <dimen name="star_widthSmall">20dp</dimen>
+</resources>

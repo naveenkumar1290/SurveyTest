@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+
+    android:padding="10dp">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+
+
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <View
+                android:layout_width="@dimen/view_width"
+                android:layout_height="@dimen/view_width" />
+
+            <LinearLayout
+                android:id="@+id/ll_LocateCrate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorControlNormal1"
+                android:gravity="center"
+
+                android:orientation="vertical">
+
+                <ImageView
+
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:clickable="false"
+
+                    android:src="@drawable/ic_person_blue_24dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/TotalActivePatient"
+                    android:layout_width="@dimen/ringSize"
+                    android:layout_height="@dimen/ringSize"
+                    android:background="@drawable/ring_shape_approve"
+                    android:gravity="center"
+
+                    android:text="0"
+
+                    android:textSize="@dimen/textSize_admin_dash" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/textviewsize_homeActivity"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+
+                    android:text="Total Active Patient"
+
+                    android:textSize="@dimen/textSize_homeActivity" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/view_width"
+                android:layout_height="@dimen/view_width" />
+
+            <LinearLayout
+                android:id="@+id/ll_UsageCharges"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorControlNormal1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:clickable="false"
+                    android:src="@drawable/ic_person_blue_24dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/TotalDialysis"
+                    android:layout_width="@dimen/ringSize"
+                    android:layout_height="@dimen/ringSize"
+                    android:background="@drawable/ring_shape_pending"
+
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="@dimen/textSize_admin_dash" />
+
+                <TextView
+                    android:id="@+id/text_UsageCharges"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/textviewsize_homeActivity"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+
+                    android:text="Total Dialysis"
+
+                    android:textSize="@dimen/textSize_homeActivity" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="@dimen/view_width"
+                android:layout_height="@dimen/view_width" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_width" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_width" />
+
+        <LinearLayout
+            android:id="@+id/first2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorControlNormal1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/selectvis2d"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:clickable="false"
+                android:src="@drawable/ic_person_blue_24dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/TotalBillings"
+                android:layout_width="@dimen/ringSize"
+                android:layout_height="@dimen/ringSize"
+                android:background="@drawable/ring_shape_rejected"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="@dimen/textSize_admin_dash" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/textviewsize_homeActivity"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Total Billings"
+                android:textSize="@dimen/textSize_homeActivity" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_width" />
+
+        <LinearLayout
+            android:id="@+id/first3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorControlNormal1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/slot"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:clickable="false"
+                android:src="@drawable/ic_person_blue_24dp"
+
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/BillingRevenue"
+                android:layout_width="@dimen/ringSize"
+                android:layout_height="@dimen/ringSize"
+                android:background="@drawable/ring_shape_snoozed"
+                android:gravity="center"
+
+                android:text="0"
+
+                android:textSize="@dimen/textSize_admin_dash" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/textviewsize_homeActivity"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Billing Revenue"
+                android:textSize="@dimen/textSize_homeActivity" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_width" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="@dimen/view_width"
+        android:layout_height="@dimen/view_width" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_width" />
+
+        <LinearLayout
+            android:id="@+id/first6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/dcdc_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/show_file_new"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:clickable="false"
+                android:src="@drawable/ic_person_blue_24dp"
+                android:visibility="gone"
+
+                />
+
+            <TextView
+                android:id="@+id/BillingRekvenue"
+                android:layout_width="@dimen/ringSize"
+                android:layout_height="@dimen/ringSize"
+                android:background="@drawable/ring_shape_snoozed"
+                android:gravity="center"
+
+                android:text="0"
+
+                android:textSize="@dimen/textSize_admin_dash" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/textviewsize_homeActivity"
+
+
+                android:text="Job Files "
+
+                android:textSize="@dimen/textSize_homeActivity" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_width" />
+
+        <LinearLayout
+            android:id="@+id/ll_whatsInside"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/dcdc_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageVw_whatsInside"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:clickable="false"
+                android:src="@drawable/ic_person_blue_24dp"
+                android:visibility="gone"
+
+                />
+
+            <TextView
+                android:id="@+id/BillingRkevenue"
+                android:layout_width="@dimen/ringSize"
+                android:layout_height="@dimen/ringSize"
+                android:background="@drawable/ring_shape_snoozed"
+                android:gravity="center"
+
+                android:text="0"
+
+                android:textSize="@dimen/textSize_admin_dash" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/textviewsize_homeActivity"
+
+
+                android:text="What's Inside "
+
+                android:textSize="@dimen/textSize_homeActivity" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_width" />
+    </LinearLayout>
+
+
+</LinearLayout>
+

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.cs.nks.easycouriers">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".util.AppController"
+        android:allowBackup="true"
+        android:icon="@drawable/logo_192_192"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_192_192"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme">
+        <activity android:name=".activity.FeedbackActivity" />
+        <activity android:name=".activity.MonthWiseFeedbackActivity" />
+        <activity android:name=".activity.MonthWiseFeedbackActivityNew" />
+        <activity android:name=".activity.MonthWiseFeedbackActivityNew2" />
+        <activity
+            android:name=".dcdc.patient.MapsActivity"
+         />
+        <activity
+            android:name=".activity.TestViewPager"
+            android:label="@string/title_activity_test_view_pager"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.ChangePassword" />
+        <activity
+            android:name=".activity.Tab_Login_Register_Activity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBarTab"
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- android:windowSoftInputMode="stateAlwaysHidden" -->
+        <activity
+            android:name=".activity.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ActivityWithNavigationMenu"
+            android:label="@string/title_activity_home__drawer_"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
+
+
+        <activity
+            android:name=".activity.ActivityWithNavigationMenuAdmin"
+            android:label="@string/title_activity_home__drawer_"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".place_api.example.google.playservices.placecomplete.MainActivity"
+            android:label="@string/title_activity_home__drawer_" /> <!-- android:theme="@style/AppTheme" -->
+        <!-- for google places api -->
+        <!-- for getting 'google-services.json' file use 'firebase implementation' -->
+        <!-- (get this from google-services.json) under api_key -->
+        <!-- Error if meta-data not defined:'Error getting autocomplete prediction API call: Status{statusCode=ERROR, resolution=null' -->
+        <!-- Error if PLACE SDK not enabled:'place api access not configured android' -->
+        <!-- Enable PLACE SDk:https://console.developers.google.com/google/maps-apis/api-list?project=easy-courier -->
+        <!-- Search PLACE SDK and enable it -->
+        <!--
+            <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCVrFr4wVhBLyzbZ_oPDnkF1ycdI5uzWqg" />
+        -->
+        <!-- for google places api -->
+        <!-- <activity android:name=".activity.CurrentLocationActivity" /> -->
+
+        <activity android:name=".activity.FullscreenWebView" />
+
+        <activity android:name=".activity.UpdateScheduleActivity" />
+        <activity android:name=".dcdc.patient.ViewReportActivity" />
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:label="@string/title_activity_about_us"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.darsh.multipleimageselect.activities.AlbumSelectActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/MultipleImageSelectTheme">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <provider
+            android:name=".util.GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service android:name=".fcm.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!--
+         Set custom default icon. This is used when no icon is set for incoming notification messages.
+         See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+    </application>
+
+</manifest>

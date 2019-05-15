@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+        <!-- android:background="#CFF5FF"-->
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_width" />
+
+        <LinearLayout
+            android:id="@+id/ll_billable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+
+            android:visibility="visible">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:gravity="center|bottom"
+
+
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/view_width"
+                    android:layout_height="@dimen/view_width" />
+
+                <LinearLayout
+                    android:id="@+id/ll_Appointment"
+                    android:layout_width="@dimen/home_ll_size"
+                    android:layout_height="@dimen/home_ll_size"
+
+
+                    android:background="@color/home_ll_color"
+                    android:gravity="center"
+
+                    android:orientation="vertical">
+<!--  android:background="@android:color/white"-->
+                    <ImageView
+
+                        android:layout_width="@dimen/home_icon_size"
+                        android:layout_height="@dimen/home_icon_size"
+                        android:clickable="false"
+
+                        android:src="@drawable/ic_local_hospital_black_128dp"
+                        android:tint="@color/home_icon_color" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+
+                        android:text="Book an Appointment"
+android:textColor="@color/home_txt_color"
+                        android:textSize="@dimen/textSize_homeActivity" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/view_width"
+                    android:layout_height="@dimen/view_width" />
+
+                <LinearLayout
+                    android:id="@+id/ll_Schedule"
+                    android:layout_width="@dimen/home_ll_size"
+                    android:layout_height="@dimen/home_ll_size"
+                    android:background="@color/home_ll_color"
+
+                    android:gravity="center"
+                    android:orientation="vertical">
+<!--   android:background="@android:color/white"-->
+                    <ImageView
+                        android:id="@+id/slot"
+                        android:layout_width="@dimen/home_icon_size"
+                        android:layout_height="@dimen/home_icon_size"
+                        android:clickable="false"
+                        android:src="@drawable/ic_perm_contact_calendar_black_128dp"
+
+                        android:tint="@color/home_icon_color" />
+                    <!-- android:text="Notifications"-->
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+
+
+                        android:gravity="center"
+                        android:text="Your Schedule"
+                        android:textColor="@color/home_txt_color"
+                        android:textSize="@dimen/textSize_homeActivity" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/view_width"
+                    android:layout_height="@dimen/view_width" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/view_width"
+                android:layout_height="@dimen/view_width" />
+        </LinearLayout>
+
+        <!--new chnges-->
+
+
+        <!---->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|top"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="@dimen/view_width"
+                android:layout_height="@dimen/view_width" />
+
+            <LinearLayout
+                android:id="@+id/ll_reports"
+                android:layout_width="@dimen/home_ll_size"
+                android:layout_height="@dimen/home_ll_size"
+
+                android:background="@color/home_ll_color"
+                android:gravity="center"
+                android:orientation="vertical">
+<!-- android:background="@android:color/white"-->
+                <ImageView
+
+                    android:layout_width="@dimen/home_icon_size"
+                    android:layout_height="@dimen/home_icon_size"
+                    android:clickable="false"
+
+                    android:src="@drawable/ic_assignment_black_128dp"
+                    android:tint="@color/home_icon_color" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+
+
+                    android:gravity="center"
+                    android:text="Reports"
+                    android:textColor="@color/home_txt_color"
+                    android:textSize="@dimen/textSize_homeActivity" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/view_width"
+                android:layout_height="@dimen/view_width" />
+
+            <LinearLayout
+                android:id="@+id/ll_cntct_us"
+                android:layout_width="@dimen/home_ll_size"
+                android:layout_height="@dimen/home_ll_size"
+
+                android:background="@color/home_ll_color"
+                android:gravity="center"
+                android:orientation="vertical">
+<!-- android:background="@android:color/white"-->
+                <ImageView
+
+                    android:layout_width="@dimen/home_icon_size"
+                    android:layout_height="@dimen/home_icon_size"
+                    android:clickable="false"
+
+                    android:src="@drawable/ic_contact_mail_black_24dp"
+                    android:tint="@color/home_icon_color" />
+
+                <TextView
+
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="Contact Us"
+                    android:textColor="@color/home_txt_color"
+                    android:textSize="@dimen/textSize_homeActivity" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/view_width"
+                android:layout_height="@dimen/view_width" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_width" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

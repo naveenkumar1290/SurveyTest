@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "83858490658",
+    "firebase_url": "https://dcdc-2a747.firebaseio.com",
+    "project_id": "dcdc-2a747",
+    "storage_bucket": "dcdc-2a747.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83858490658:android:2aed27ffac22a37e",
+        "android_client_info": {
+          "package_name": "com.planet.dcdc_kidneycare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83858490658-85064f60bbkhrl5iite8ek71knj4b8es.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.planet.dcdc_kidneycare",
+            "certificate_hash": "19da8728119cefb7514520b78028c82fe3233654"
+          }
+        },
+        {
+          "client_id": "83858490658-6e6oegu9sumho0sbpklmll96f0cg9icr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2mXViTUR_PCVwn_pBrSCtbW0VhTtjRrY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83858490658-6e6oegu9sumho0sbpklmll96f0cg9icr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:gravity="center"
+    >
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/txt_size"
+        android:gravity="center"
+        android:text="Verify And Login"
+        android:layout_marginTop="@dimen/et_margin_top"
+        android:textColor="@color/primaryTextColor"
+        android:textStyle="bold"
+
+        />
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sub_txt_size"
+        android:layout_marginTop="10dp"
+        android:text="Enter the OTP Sent to Your Mobile"
+        android:textColor="@color/primaryTextColor"
+        />
+    <EditText
+        android:id="@+id/et_OTP"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/CustomEdittextStyle"
+
+        android:hint="Enter the 4 digit OTP"
+        android:inputType="number"
+        android:maxLength="4"
+        />
+
+
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_size"
+        android:background="@drawable/button_shape"
+        android:text="Login"
+        android:layout_marginTop="20dp"
+        style="@style/CustomButtonStyle"
+        />
+
+
+
+</LinearLayout>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+       android:paddingLeft="30dp"
+       android:gravity="center_vertical"
+        android:visibility="visible"
+        android:background="@color/colorAccent"
+        >
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="@dimen/app_icon_size"
+            android:layout_height="@dimen/app_icon_size"
+            android:src="@drawable/back_arrow"
+
+            />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:textColor="@android:color/white"
+            android:text="Address"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+      >
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/tv_location"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:background="@drawable/edittext_background"
+        >
+        <ImageView
+
+            android:layout_width="@dimen/app_icon_size"
+            android:layout_height="@dimen/app_icon_size"
+           android:src="@drawable/location"
+            android:tint="@color/colorAccent"
+              />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+           android:text="Use Current Location"
+            />
+    </LinearLayout>
+
+        <AutoCompleteTextView
+            android:id="@+id/autocomplete_places"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/autocomplete_hint"
+            android:background="@drawable/edittext_background"
+android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="false" />
+
+        <Button
+            android:id="@+id/button_select_address"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_size"
+            android:background="@drawable/button_shape"
+            android:text="Use this address"
+            android:layout_marginTop="20dp"
+            style="@style/CustomButtonStyle"
+            />
+
+        <Button
+            android:id="@+id/button_clear"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_size"
+            android:background="@drawable/button_shape"
+
+            android:text="@string/clear_text"
+            android:layout_marginTop="20dp"
+            style="@style/CustomButtonStyle"
+            />
+          <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+      android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selected_place"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/place_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="all"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/place_attribution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="all"
+            android:text=""
+            android:paddingTop="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

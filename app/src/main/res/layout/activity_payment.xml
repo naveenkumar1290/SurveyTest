@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="com.cs.nks.easycouriers.activity.AvailableRides">
+
+<!--***********************-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/et_margin_top"
+            android:text="Pickup Location"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/et_hint_txt_size" />
+
+        <EditText
+            android:id="@+id/et_picking_up_location"
+            style="@style/CustomEdittextStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/placeholder_16"
+
+            android:drawableTint="@color/icon_color"
+
+            android:editable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:hint="PickUp Location"
+
+            android:inputType="none"
+            android:singleLine="false">
+
+        </EditText>
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/et_margin_top"
+            android:text="Drop Location"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/et_hint_txt_size" />
+
+        <EditText
+            android:id="@+id/et_drop_off_location"
+            style="@style/CustomEdittextStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:drawableRight="@drawable/placeholder_16"
+
+
+            android:drawableTint="@color/icon_color"
+            android:editable="false"
+
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:hint="Drop Location"
+
+            android:inputType="none"
+            android:singleLine="false" />
+
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/et_margin_top"
+            android:text="Pickup Date"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/et_hint_txt_size" />
+        <EditText
+            android:id="@+id/et_picking_up_date"
+            style="@style/CustomEdittextStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/et_height"
+            android:drawableTint="@color/icon_color"
+
+            android:drawableRight="@drawable/calendar_schedular"
+            android:editable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:hint="Pick Up Date(dd-MM-yyyy)"
+            android:inputType="none"
+            android:maxLines="1"
+            />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/et_margin_top"
+            android:text="Pickup Time"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/et_hint_txt_size" />
+        <EditText
+            android:id="@+id/et_picking_up_time"
+            style="@style/CustomEdittextStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/et_height"
+
+            android:drawableRight="@drawable/clock_schedular_1"
+
+
+            android:drawableTint="@color/icon_color"
+            android:editable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:hint="Pick Up Time(HH:mm)"
+            android:inputType="none"
+            android:maxLines="1"
+
+
+            />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/et_margin_top"
+            android:text="Weight"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/et_hint_txt_size" />
+
+        <EditText
+            android:id="@+id/et_weight"
+            style="@style/CustomEdittextStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/et_height"
+            android:hint="Weight"
+            android:inputType="none"
+
+              android:editable="false"
+
+            android:focusableInTouchMode="false"
+            android:maxLines="1"
+            android:padding="@dimen/et_padding"
+
+
+            android:textSize="16sp" />
+    </LinearLayout>
+    <!--***********************-->
+    <Spinner
+        android:id="@+id/sp_paymentType"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/et_height"
+        android:layout_marginTop="@dimen/et_margin_top"
+        android:paddingLeft="0dp"
+
+        android:backgroundTint="@color/icon_color"
+        />
+    <Button
+        android:id="@+id/btn_continue"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_size"
+        android:background="@drawable/button_shape"
+        android:text="Continue"
+        android:layout_marginTop="20dp"
+        style="@style/CustomButtonStyle"
+        />
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+
+        >
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
