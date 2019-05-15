@@ -453,10 +453,11 @@ public class Reportfragment extends Fragment {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Log.d("Response", response);
+                            Toast.makeText(getActivity(),response,Toast.LENGTH_SHORT).show();
                             String status = jsonObject.getString("status");
                             String msg = jsonObject.getString("msg");
                             if (status.equals("1")) {
-                               String url=UTIL.Domain_DCDC+"dcdc_web_service/reports/"+msg;
+                               String url=UTIL.Domain_DCDC+"dcdc_web_service/"+msg;
                                 Intent intent = new Intent(getActivity(), FullscreenWebView.class);
                                 intent.putExtra("url", url);
                                 startActivity(intent);

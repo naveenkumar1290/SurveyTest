@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Matrix;
 import android.graphics.PointF;
@@ -13,20 +14,26 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cs.nks.easycouriers.R;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.FileDownloader;
+import com.cs.nks.easycouriers.util.UTIL;
 
 import java.io.File;
 import java.io.IOException;
@@ -84,6 +91,8 @@ public class FullscreenWebView extends AppCompatActivity implements View.OnTouch
     float oldDist = 1f;
     //NetworkImageView mContentView;
     ImageView mContentView;
+    EditText et_mobile, et_password;
+    android.app.Dialog alertDialog;
     //private View mContentView;
     static final int RequestPermissionCode =100;
     private final Runnable mHidePart2Runnable = new Runnable() {
@@ -150,9 +159,10 @@ public class FullscreenWebView extends AppCompatActivity implements View.OnTouch
 
 
         WebView webView = (WebView) findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
+       // webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setBuiltInZoomControls(true);
         webView.setWebViewClient(new WebViewClient() {
 
             @Override
@@ -176,9 +186,8 @@ public class FullscreenWebView extends AppCompatActivity implements View.OnTouch
             }
         });
 
+
         webView.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + url_web);
-
-
         mContentView.setOnTouchListener(FullscreenWebView.this);
 
 
@@ -457,7 +466,7 @@ public class FullscreenWebView extends AppCompatActivity implements View.OnTouch
 
             FileDownloader.downloadFile(fileUrl, pdfFile);
 
-            return folder1.getAbsolutePath();
+            return pdfFile.getAbsolutePath();
         }
 
         @Override
@@ -476,8 +485,9 @@ public class FullscreenWebView extends AppCompatActivity implements View.OnTouch
             super.onPostExecute(path);
             progressDoalog.dismiss();
             try {
-                Toast.makeText(FullscreenWebView.this, "File downloaded successfully !" +
-                        "  " + "Location:" + path, Toast.LENGTH_SHORT).show();
+               /* Toast.makeText(FullscreenWebView.this, "File downloaded successfully !" +
+                        "  " + "Location:" + path, Toast.LENGTH_SHORT).show();*/
+                dialog_Saved("Location:" + path);
             } catch (Exception e) {
                 e.getMessage();
             }
@@ -547,5 +557,44 @@ public class FullscreenWebView extends AppCompatActivity implements View.OnTouch
         return
                 //   FirstPermissionResult == PackageManager.PERMISSION_GRANTED &&
                 SecondPermissionResult == PackageManager.PERMISSION_GRANTED;
+    }
+    private void dialog_Saved(String path) {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.fancyalertdialog, null);
+        dialogBuilder.setView(dialogView);
+
+
+        final TextView title = dialogView.findViewById(R.id.title);
+        final TextView message = dialogView.findViewById(R.id.message);
+        final Button positiveBtn = dialogView.findViewById(R.id.positiveBtn);
+        final Button negativeBtn = dialogView.findViewById(R.id.negativeBtn);
+
+
+        // dialogBuilder.setTitle("Device Details");
+        title.setText("Saved successfully!");
+        message.setText(path);
+        positiveBtn.setText("OK");
+        negativeBtn.setText("No");
+        negativeBtn.setVisibility(View.GONE);
+        positiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+                      finish();
+
+            }
+        });
+        negativeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog = dialogBuilder.create();
+        alertDialog.show();
+
     }
 }
