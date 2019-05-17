@@ -334,7 +334,7 @@ public class Reportfragment extends Fragment {
                     intent.putExtra("url", url);
                     startActivity(intent);*/
                    String appointmentID= projectPhoto.getUserID();
-                    dialog_LOGOUT( appointmentID);
+                    dialog_Report_type( appointmentID);
 
                 }
             });
@@ -398,7 +398,7 @@ public class Reportfragment extends Fragment {
             }
         }
     }
-    private void dialog_LOGOUT(final String appointmentID) {
+    private void dialog_Report_type(final String appointmentID) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = this.getLayoutInflater();
@@ -439,6 +439,7 @@ public class Reportfragment extends Fragment {
             @Override
             public void onClick(View view) {
                 alertDialog.dismiss();
+                getDialysisReport(appointmentID);
             }
         });
 
@@ -514,7 +515,7 @@ public class Reportfragment extends Fragment {
                             String status = jsonObject.getString("status");
                             String msg = jsonObject.getString("msg");
                             if (status.equals("1")) {
-                                String url=UTIL.Domain_DCDC+"dcdc_web_service/reports/"+msg;
+                                String url=UTIL.Domain_DCDC+"dcdc_web_service/"+msg;
                                 Intent intent = new Intent(getActivity(), FullscreenWebView.class);
                                 intent.putExtra("url", url);
                                 startActivity(intent);
@@ -550,5 +551,55 @@ public class Reportfragment extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         queue.add(postRequest);
     }
+    public void getDialysisReport(final String appointmentID) {
+        String URL = UTIL.Domain_DCDC + UTIL.DIALYSIS_Report_API;
+        util.showProgressDialog(UTIL.Progress_msg);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, URL,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        util.hideProgressDialog();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            Log.d("Response", response);
+                            String status = jsonObject.getString("status");
+                            String msg = jsonObject.getString("msg");
+                            if (status.equals("1")) {
+                                String url=UTIL.Domain_DCDC+"dcdc_web_service/"+msg;
+                                Intent intent = new Intent(getActivity(), FullscreenWebView.class);
+                                intent.putExtra("url", url);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (Exception e) {
+                            e.getMessage();
+                        }
+                    }
+                },
+                new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        util.hideProgressDialog();
+                        Log.d("Error.Response", String.valueOf(error));
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
 
+                String patientId = UTIL.getPref(getActivity(), UTIL.Key_UserId);
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("p_id", patientId);
+                params.put("a_id", appointmentID);
+
+
+
+                return params;
+            }
+        };
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        queue.add(postRequest);
+    }
 }

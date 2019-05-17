@@ -111,6 +111,8 @@ public static final String KEY_isLogin = "isLogin";
 
     public static String LAB_Report_API = "dcdc_web_service/lab_report.php";//stri
 
+    public static String DIALYSIS_Report_API = "dcdc_web_service/dialysis_report.php";
+
     public UTIL(Context context) {
         myContext = context;
     }

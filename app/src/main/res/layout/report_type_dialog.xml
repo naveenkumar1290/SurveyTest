@@ -17,7 +17,6 @@
             android:orientation="vertical">
 
 
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,7 +25,6 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -36,10 +34,10 @@
                     android:text="Rate us if you like the app"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -49,14 +47,16 @@
                     android:paddingRight="16dp"
                     android:text="Do you really want to Exit ?"
                     android:textAlignment="center"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -66,6 +66,13 @@
                            android:layout_height="wrap_content"
                            android:layout_weight="1"
                            android:orientation="horizontal">-->
+                    <ImageView
+
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/ic_assignment_black_48dp"
+                        android:visibility="gone" />
 
                     <Button
                         android:id="@+id/lab_report"
@@ -80,7 +87,6 @@
                     <!--   </LinearLayout>-->
 
 
-
                     <!--     <LinearLayout
 
                              android:layout_width="match_parent"
@@ -91,9 +97,9 @@
                         android:id="@+id/OPD_report"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/button_shape"
                         android:text="OPD  Report"
-                        android:layout_marginTop="10dp"
                         android:textColor="#ffffff" />
                     <!--  android:textColor="#ffffff"-->
 
@@ -103,9 +109,9 @@
                         android:id="@+id/Dialysis_report"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/button_shape"
                         android:text="Dialysis Report"
-                        android:layout_marginTop="10dp"
                         android:textColor="#ffffff" />
                 </LinearLayout>
             </LinearLayout>

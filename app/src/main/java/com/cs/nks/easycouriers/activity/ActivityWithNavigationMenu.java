@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -78,24 +79,40 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         manupulateDrawerItems();
+
+        HandleIntent();
+
+        UpdateToken();
+
+
+
+    }
+
+
+    private void HandleIntent(){
         Bundle b = getIntent().getExtras();
         if (b != null) {
             String isFromPush = b.getString("push", "");
             String isFromMap = b.getString("map", "");
             if (isFromPush.equalsIgnoreCase("1")) {
                 addScheduleListFragment();
-            }
-            else if (isFromMap.equalsIgnoreCase("1")) {
+            } else if (isFromMap.equalsIgnoreCase("1")) {
                 add_BookAppointment_Fragment(b);
-            }
+            } else {
+               // addHomeFragment();
+                // ATTENTION: This was auto-generated to handle app links.
+                Intent appLinkIntent = getIntent();
+                String appLinkAction = appLinkIntent.getAction();
+                Uri appLinkData = appLinkIntent.getData();
 
-            else {
-                addHomeFragment();
             }
         } else {
             addHomeFragment();
         }
-        //     UpdateFCMTokenAtServer_New();
+
+    }
+
+    private void UpdateToken(){
         String type = UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_Type);
         if (type.equals("2")) { //patient
             String FCMToken = UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_FCMTOken);
@@ -103,12 +120,10 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
                 UpdateFCMTokenAtServer();
             }
         } else if (type.equals("1")) {  // admin
-
+            // don't update token on server
         }
 
-
     }
-
 
     public void addHomeFragment() {
         // DasboardFragment fragment = new DasboardFragment();
@@ -120,7 +135,8 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
         fragmentTransaction.commit();
 
     }
-    public  void add_BookAppointment_Fragment(Bundle bundle) {
+
+    public void add_BookAppointment_Fragment(Bundle bundle) {
         // DasboardFragment fragment = new DasboardFragment();
         AppointmentFragment fragment = new AppointmentFragment();
         fragment.setArguments(bundle);
@@ -306,7 +322,7 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
                 } else {
                     addHomeFragment();
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.getMessage();
                 addHomeFragment();
             }

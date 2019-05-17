@@ -21,13 +21,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:theme">
+        <meta-data
+            android:name="asset_statements"
+            android:resource="@string/asset_statements" />
+
         <activity android:name=".activity.FeedbackActivity" />
         <activity android:name=".activity.MonthWiseFeedbackActivity" />
         <activity android:name=".activity.MonthWiseFeedbackActivityNew" />
         <activity android:name=".activity.MonthWiseFeedbackActivityNew2" />
-        <activity
-            android:name=".dcdc.patient.MapsActivity"
-         />
+        <activity android:name=".dcdc.patient.MapsActivity" />
         <activity
             android:name=".activity.TestViewPager"
             android:label="@string/title_activity_test_view_pager"
@@ -53,7 +55,19 @@
             android:name=".activity.ActivityWithNavigationMenu"
             android:label="@string/title_activity_home__drawer_"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+            android:windowSoftInputMode="adjustPan|adjustResize">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="dcdc.businesstowork.com"
+                    android:pathPattern="/dcdc_web_service" />
+            </intent-filter>
+        </activity>
 
 
         <activity
@@ -101,6 +115,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <provider
             android:name=".util.GenericFileProvider"
             android:authorities="${applicationId}.provider"

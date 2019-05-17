@@ -126,6 +126,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_test_view_pager">TestViewPager</string>
+    <string name="asset_statements" translatable="false">[{ \"include\": \"https://dcdc.businesstowork.com/.well-known/assetlinks.json\" }]</string>
 
 
 </resources>
