@@ -314,14 +314,18 @@ public class LoginFragment extends Fragment implements
                         UTIL.setPref(myContext, UTIL.Key_Type, type);
 
 
-                        if (type.equals("2")) { //patient
+                        if (type.equals("2")) { //Patient
+
 
                             String UserId = jObj.getString("user_id");
                             UTIL.setPref(myContext, UTIL.Key_UserId, UserId);
-                        } else if (type.equals("1")) {  // admin
+
+
+                        } else if (type.equals("1")) {  // Admin
                             String UserId = jObj.getString("admin_id");
                             UTIL.setPref(myContext, UTIL.Key_UserId, UserId);
                         }
+
                         UTIL.StartHomeActivity(getActivity());
 
 

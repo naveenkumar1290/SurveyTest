@@ -341,9 +341,9 @@ public class Reportfragment extends Fragment {
             holder.btn_feedback.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   // Intent intent = new Intent(getActivity(), FeedbackActivity.class);
-                  //Intent intent = new Intent(getActivity(), MonthWiseFeedbackActivityNew.class);
-                    Intent intent = new Intent(getActivity(), MonthWiseFeedbackActivityNew2.class);
+                    Intent intent = new Intent(getActivity(), FeedbackActivity.class);
+
+                //    Intent intent = new Intent(getActivity(), MonthWiseFeedbackActivityNew2.class);
                     intent.putExtra("appointment_Id", projectPhoto.getUserID());
                     intent.putExtra("branch_id", projectPhoto.getBranch_id());
 
@@ -542,9 +542,6 @@ public class Reportfragment extends Fragment {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("p_id", patientId);
                 params.put("a_id", appointmentID);
-
-
-
                 return params;
             }
         };

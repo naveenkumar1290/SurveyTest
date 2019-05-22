@@ -134,7 +134,7 @@ public class MonthWiseFeedbackActivityNew2 extends AppCompatActivity implements 
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(myContext);
         // recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new MoviesAdapter(MonthWiseFeedbackActivityNew2.this);
         recyclerView.setAdapter(mAdapter);
@@ -159,7 +159,7 @@ public class MonthWiseFeedbackActivityNew2 extends AppCompatActivity implements 
             Bundle b = getIntent().getExtras();
             if (b != null) {
                 //  String appointmentId = b.getString("appointment_Id");
-                branchId = b.getString("branch_id");
+                branchId = b.getString("Branch_Id");
             }
 
         } catch (Exception e) {
@@ -655,7 +655,6 @@ public class MonthWiseFeedbackActivityNew2 extends AppCompatActivity implements 
                             if (status.equals("1")) {
                                 Toast.makeText(MonthWiseFeedbackActivityNew2.this, "Thank you for your feedback!", Toast.LENGTH_SHORT).show();
                                 finish();
-
                             } else {
                                 Toast.makeText(MonthWiseFeedbackActivityNew2.this, msg, Toast.LENGTH_SHORT).show();
                             }
@@ -678,7 +677,7 @@ public class MonthWiseFeedbackActivityNew2 extends AppCompatActivity implements 
                 String patientId = UTIL.getPref(MonthWiseFeedbackActivityNew2.this, UTIL.Key_UserId);
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("p_id", patientId);
-                params.put("branch_id", "1");//change here
+                params.put("branch_id", branchId);//change here
                 //params.put("branch_id", branchId);//change here
                 params.put("environment", str_environment);
                 params.put("cleanliness", str_cleanliness);

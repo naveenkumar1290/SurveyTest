@@ -44,8 +44,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String body = data.get("body");
             String msg = data.get("message");
             String badge = data.get("badge");
-            sendMyNotification(title,body,msg);
-
+            String Branch_Id = data.get("Branch_Id");
+            sendMyNotification(title,body,msg,Branch_Id);
+           // sendMyNotification(Branch_Id,Branch_Id,Branch_Id);
 
         }
 
@@ -72,7 +73,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
 
-    private void sendMyNotification(String title,String message,String type) {
+    private void sendMyNotification(String title,String message,String type,String Branch_Id) {
         //On click of notification it redirect to this Activity
         Intent intent=null;
         if (type.equals("1")){ // push for appointment approve/reject/completed
@@ -85,6 +86,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
      //   Intent intent = new Intent(this, ActivityWithNavigationMenu.class);
         intent.putExtra("push","1");
+        intent.putExtra("Branch_Id",Branch_Id);
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
