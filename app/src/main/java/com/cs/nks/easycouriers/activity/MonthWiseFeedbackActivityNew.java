@@ -450,7 +450,9 @@ public class MonthWiseFeedbackActivityNew extends AppCompatActivity implements D
 
 
             String patientId = UTIL.getPref(myContext, UTIL.Key_UserId);
-            String url = "http://dcdc.businesstowork.com/dcdc_web_service/upload_feedback_files_api.php?p_id=" + patientId + "&branch_id=" + "1";
+          //  String url = "http://dcdc.businesstowork.com/dcdc_web_service/upload_feedback_files_api.php?p_id=" + patientId + "&branch_id=" + "1";
+            String url = UTIL.Domain_DCDC + UTIL.Upload_Feedback_Files_API+"p_id=" + patientId + "&branch_id=" + "1";
+
             Call<ResponseBody> req = apiService.uploadMedia(surveyImagesParts, url);
             req.enqueue(new Callback<ResponseBody>() {
                 @Override

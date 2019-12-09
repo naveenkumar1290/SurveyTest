@@ -98,20 +98,20 @@ public class DasboardFragmentAdmin extends Fragment {
             @Override
             public void onClick(View view) {
 
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new AppointmentFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new AppointmentFragment());
             }
         });
         ll_Schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new ScheduleFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ScheduleFragment());
             }
         });
 
         ll_reports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new Reportfragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new Reportfragment());
             }
         });
         ll_share_app.setOnClickListener(new View.OnClickListener() {
@@ -128,15 +128,15 @@ public class DasboardFragmentAdmin extends Fragment {
         ll_cntct_us.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new ContactUsFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ContactUsFragment());
 
             }
         });
         ll_about_us.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new AboutUsFragment());
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new ServicesFragmentNew());
+                //((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new AboutUsFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ServicesFragmentNew());
 
 
             }

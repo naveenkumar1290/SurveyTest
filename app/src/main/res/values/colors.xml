@@ -1,43 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="colorPrimary">#3F51B5</color>-->
-    <!--<color name="colorPrimaryDark">#303F9F</color>-->
-    <!--<color name="colorAccent">#FF4081</color>-->
-
-
-
-    <!--green theme-->
-
-   <!-- <color name="colorPrimary">#1d7628</color>
-    <color name="colorPrimaryDark">#06360c</color>
-    <color name="colorAccent">#1d7628</color>
-    <color name="primaryTextColor">#505050</color>
--->
-
-  <!--  <color name="colorPrimary">#fb8c00</color>
-    <color name="colorAccent">#ffbd45</color>
-    <color name="colorPrimaryDark">#c25e00</color>
-    <color name="primaryTextColor">#000000</color>-->
-
 
 
     <!--https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=BA68C8-->
 
-    <!--pink-->
- <!-- <color name="colorPrimary">#ec407a</color>
-  <color name="colorAccent">#ff77a9</color>
-  <color name="colorPrimaryDark">#b4004e</color>
-  <color name="primaryTextColor">#505050</color>-->
-
-
-    <!--red theme-->
-    <!--<color name="colorPrimary">#ef5350</color>-->
-    <!--<color name="colorAccent">#ff867c</color>-->
-    <!--<color name="colorPrimaryDark">#b61827</color>-->
-    <!--<color name="primaryTextColor">#505050</color>-->
-
 <!--blue-->
- <!--   <color name="colorPrimary">#0e61aa</color>
+  <!--  <color name="colorPrimary">#0e61aa</color>
     <color name="colorAccent">#568edc</color>
     <color name="colorPrimaryDark">#00387a</color>
     <color name="primaryTextColor">#505050</color>
@@ -45,16 +13,27 @@
 
 <!--green-->
 
-    <color name="colorPrimary">#35bbbf</color>
+    <color name="colorPrimary">#1976d2</color>
+    <color name="colorAccent">#63a4ff</color>
+    <color name="colorPrimaryDark">#004ba0</color>
+    <color name="primaryTextColorDark">#353535</color>
+    <color name="primaryTextColor">#505050</color>
+
+
+
+
+
+
+
+  <!--  <color name="colorPrimary">#35bbbf</color>
     <color name="colorAccent">#54c5c8</color>
     <color name="colorPrimaryDark">#008a8f</color>
     <color name="primaryTextColor">#505050</color>
     <color name="primaryTextColorDark">#353535</color>
+-->
 
-  <!-- <color name="colorPrimary">#32c5d2</color>
-    <color name="colorAccent">#74f8ff</color>
-    <color name="colorPrimaryDark">#0094a1</color>
-     <color name="primaryTextColor">#505050</color>-->
+
+
     <color name="btn_text_sky_blue">#16C3F7</color>
     <color name="text_color_new">#39373C</color>
     <color name="skyblue_light">#55E6FA</color>

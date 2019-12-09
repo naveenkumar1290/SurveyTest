@@ -1,9 +1,12 @@
 package com.cs.nks.easycouriers.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -29,7 +32,14 @@ import com.cs.nks.easycouriers.dcdc.patient.DasboardFragmentAdmin;
 import com.cs.nks.easycouriers.dcdc.patient.DasboardFragmentNew;
 import com.cs.nks.easycouriers.dcdc.patient.Reportfragment;
 import com.cs.nks.easycouriers.dcdc.patient.ScheduleFragment;
+import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.KvmSerializable;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 
 public class ActivityWithNavigationMenuAdmin extends AppCompatActivity
@@ -63,6 +73,11 @@ public class ActivityWithNavigationMenuAdmin extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         manupulateDrawerItems();
+
+        if (new ConnectionDetector(ActivityWithNavigationMenuAdmin.this).isConnectingToInternet()) {
+            new checkVersionUpdate().execute();
+        }
+
         addHomeFragment();
 
 
@@ -157,13 +172,13 @@ public class ActivityWithNavigationMenuAdmin extends AppCompatActivity
             imageView = (ImageView) headerLayout.findViewById(R.id.imageView);
             textviewUsr = (TextView) headerLayout.findViewById(R.id.textUserName);
             imageView.setVisibility(View.VISIBLE);
-//            String user = UTIL.getPref(ActivityWithNavigationMenu.this,
+//            String user = UTIL.getPref(ActivityWithNavigationMenuPatient.this,
 //                    UTIL.Key_USERNAME);
             String user = "Guest";
 
             textviewUsr.setText(user);
             // imageView.setBackgroundResource(R.drawable.mannnnn);
-//            if (UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_GENDER).equalsIgnoreCase("M") || UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_GENDER).equalsIgnoreCase("MALE")) {
+//            if (UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_GENDER).equalsIgnoreCase("M") || UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_GENDER).equalsIgnoreCase("MALE")) {
 //                imageView.setBackgroundResource(R.drawable.mannnnn);
 //            } else {
 //                imageView.setBackgroundResource(R.drawable.woman);
@@ -343,5 +358,146 @@ public class ActivityWithNavigationMenuAdmin extends AppCompatActivity
             fragment.onActivityResult(requestCode, resultCode, data);
         }
     }
+    private class checkVersionUpdate extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
 
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(ActivityWithNavigationMenuAdmin.this);
+            progressDialog.setMessage(getString(R.string.Loading_text));
+            progressDialog.setCancelable(false);
+            progressDialog.setCanceledOnTouchOutside(false);
+
+            try {
+                progressDialog.show();
+            } catch (Exception e) {
+                e.getMessage();
+            }
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String val = "0.0";
+            final String NAMESPACE = "https://tempuri.org/";
+            final String URL = "https://www.exhibitpower2.com/WebService/techlogin_service.asmx";
+            final String METHOD_NAME = "GetVersion";
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            try {
+
+                final String appPackageName = getPackageName();
+                String address = "https://play.google.com/store/apps/details?id=" + appPackageName;
+                request.addProperty("address", address);
+
+                SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11); // put all required data into a soap
+                envelope.dotNet = true;
+                envelope.setOutputSoapObject(request);
+                HttpTransportSE httpTransport = new HttpTransportSE(URL);
+                httpTransport.call(SOAP_ACTION, envelope);
+                Object results = (Object) envelope.getResponse();
+                val = results.toString();
+
+
+            } catch (Exception e) {
+                e.getMessage();
+            }
+            return val;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // TODO Auto-generated method stub
+            // String ver = result;
+            super.onPostExecute(result);
+            try {
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    try {
+                        progressDialog.dismiss();
+                    } catch (Exception e) {
+                        e.getMessage();
+                    }
+                }
+            } catch (Exception e) {
+                e.getMessage();
+            }
+
+            try {
+
+                PackageManager manager = ActivityWithNavigationMenuAdmin.this.getPackageManager();
+                PackageInfo info = manager.getPackageInfo(ActivityWithNavigationMenuAdmin.this.getPackageName(), 0);
+                String VersionName = info.versionName;
+                //String nversionName = result;
+                if (result == null) {
+                    result = "0";
+                }
+                Double PlayStoreVersion = Double.parseDouble(result);
+                Double AppVersionName = Double.parseDouble(VersionName);
+
+                if (AppVersionName < PlayStoreVersion) {
+                    //  if (true) {
+                    dialog_Update();
+                }
+
+            } catch (Exception err) {
+                err.getMessage();
+            }
+
+
+        }
+
+
+    }
+    private void dialog_Update() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.fancyalertdialog, null);
+        dialogBuilder.setView(dialogView);
+
+
+        final TextView title = dialogView.findViewById(R.id.title);
+        final TextView message = dialogView.findViewById(R.id.message);
+        final Button positiveBtn = dialogView.findViewById(R.id.positiveBtn);
+        final Button negativeBtn = dialogView.findViewById(R.id.negativeBtn);
+
+
+        // dialogBuilder.setTitle("Device Details");
+        title.setText("New Update Available.");
+        message.setText("Please update to the latest version!");
+        positiveBtn.setText("OK");
+        negativeBtn.setText("No");
+        negativeBtn.setVisibility(View.GONE);
+        positiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+                final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
+
+                finish();
+
+
+            }
+        });
+        negativeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog = dialogBuilder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.show();
+
+    }
 }

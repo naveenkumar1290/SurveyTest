@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -25,8 +26,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenu;
-import com.cs.nks.easycouriers.model.Doctor;
 import com.cs.nks.easycouriers.model.Geo;
 import com.cs.nks.easycouriers.util.AppController;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
@@ -50,7 +49,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, GoogleMap.OnInfoWindowClickListener, Animation.AnimationListener {
     static final int RequestPermissionCode = 101;
@@ -64,18 +62,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     GoogleApiClient mGoogleApiClient;
     Location mCurrentLocation;
     ArrayList<Geo> list_geo = new ArrayList<>();
+    UTIL util;
     private GoogleMap mMap;
     private boolean network_enabled = false;
     private boolean gps_enabled = false;
     private Marker marker1;
-    UTIL util;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         util = new UTIL(MapsActivity.this);
-
 
 
         if (ActivityCompat.checkSelfPermission(MapsActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -111,27 +109,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-      //  getBranches();
+        //  getBranches();
 
     }
 
     private void getBranches() {
-      /*  list_geo = new ArrayList<>();
-        list_geo.add(new Geo("28.666267", "77.092612", "a","",""));//
-        list_geo.add(new Geo("28.66", "77.08", "b","",""));//
-        list_geo.add(new Geo("28.6713691", "77.0582597", "c","",""));//
-        list_geo.add(new Geo("28.694439", "77.060091", "d","",""));//
-        list_geo.add(new Geo("28.710987", "77.080628", "e","",""));//
-        list_geo.add(new Geo("28.695826", "77.081844", "f","",""));//
-        list_geo.add(new Geo("28.666267", "77.092612", "g","",""));
-        list_geo.add(new Geo("28.665938", "77.094237", "h","",""));//
-        list_geo.add(new Geo("28.684209", "77.063465", "i","",""));//
-          showBranchesOnMap();
-       */
 
-    callApiGetBranch() ;
 
+        // callApiGetBranch() ;
+        getBranchesTest();
     }
+
+    private void getBranchesTest() {
+
+        list_geo.clear();
+        list_geo.add(new Geo("28.578050", "77.173140", "address 1", "", ""));
+        list_geo.add(new Geo("28.633110", "77.282650", "address 2", "", ""));
+        list_geo.add(new Geo("28.646820", "77.288190", "address 3", "", ""));
+        list_geo.add(new Geo("28.637817", "77.243148", "address 4", "", ""));
+        list_geo.add(new Geo("28.633550", "77.139240", "address 5", "", ""));
+        list_geo.add(new Geo("28.685630", "77.169840", "address 6", "", ""));
+
+        showBranchesOnMap();
+    }
+
+
     public void callApiGetBranch() {
         util.showProgressDialog(UTIL.Progress_msg);
         String url = UTIL.Domain_DCDC + UTIL.BranchList_API + "lat=" + mCurrentlatitude + "&long=" + mCurrentlongitude;
@@ -169,15 +171,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     String lat = jsonObject.getString("latitude");
                                     String lng = jsonObject.getString("longitude");
 
-                                    list_geo.add(new Geo(lat, lng, address,branch_id,branch_name));
+                                    list_geo.add(new Geo(lat, lng, address, branch_id, branch_name));
 
                                 }
 
 
                             }
+
+                            if (list_geo.isEmpty()) {
+                                Toast.makeText(MapsActivity.this, "No branches founds near by you!", Toast.LENGTH_SHORT).show();
+                            }
+
                             showBranchesOnMap();
                         } catch (Exception e) {
                             e.getCause();
+                            Toast.makeText(MapsActivity.this, "No branches found near you!", Toast.LENGTH_SHORT).show();
+
                         }
 
                     }
@@ -202,6 +211,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             ex.printStackTrace();
         }
         if (new ConnectionDetector(this).isConnectingToInternet()) {
+
         } else {
             Toast.makeText(this, "Your Internet Connection seems to be disabled, Please enable it!", Toast.LENGTH_SHORT).show();
             return;
@@ -209,7 +219,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (!gps_enabled) {
             displayPromptForEnablingGPS();
         } else {
+
+
             initilizeMap();
+            getBranchesTest();
         }
 
 
@@ -256,11 +269,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addOnConnectionFailedListener(this)
                 .build();
         mGoogleApiClient.connect();
-        Log.e("mGoogleApiClient",""+mGoogleApiClient.isConnected());
+        Log.e("mGoogleApiClient", "" + mGoogleApiClient.isConnected());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         createLocationRequest();
+
 
     }
 
@@ -273,7 +287,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-    //    Toast.makeText(getApplicationContext(), "dddd", Toast.LENGTH_LONG).show();
+        //    Toast.makeText(getApplicationContext(), "dddd", Toast.LENGTH_LONG).show();
         return false;
     }
 
@@ -307,7 +321,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-     //   Toast.makeText(getApplicationContext(), "dd", Toast.LENGTH_LONG).show();
+        //   Toast.makeText(getApplicationContext(), "dd", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -327,7 +341,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void showBranchesOnMap() {
 
-
         //   mHandler = new Handler();
 
         final Runnable r = new Runnable() {
@@ -343,7 +356,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double lat = Double.parseDouble(_lat);
                     double lng = Double.parseDouble(_lng);
 
-                    Branch(lat, lng, _address,list_geo.get(j));
+                    Branch(lat, lng, _address, list_geo.get(j));
 
                 }
 
@@ -357,7 +370,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    public void Branch(double latitude, double longitude, String branch_address,Geo geo) {
+    public void Branch(double latitude, double longitude, String branch_address, Geo geo) {
         LatLng branchLatLng = new LatLng(latitude, longitude);
         Log.d("branch add:", "" + branch_address);
         try {
@@ -381,10 +394,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onInfoWindowClick(Marker marker) {
                 // TODO Auto-generated method stub
 
-                Geo geo1 = (Geo)marker.getTag();
+                Geo geo1 = (Geo) marker.getTag();
 
                 LatLng position = marker.getPosition(); //
-                Intent i = new Intent(MapsActivity.this, ActivityWithNavigationMenu.class);
+           /*     Intent i = new Intent(MapsActivity.this, ActivityWithNavigationMenuPatient.class);
                 i.putExtra("map", "1");
                 i.putExtra(UTIL.LAT, position.latitude + "");
                 i.putExtra(UTIL.LNG, position.longitude + "");
@@ -393,6 +406,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 startActivity(i);
                 finish();
+*/
+
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("google.navigation:q=" + position.latitude + "," + position.longitude));
+                startActivity(intent);
 
 
             }

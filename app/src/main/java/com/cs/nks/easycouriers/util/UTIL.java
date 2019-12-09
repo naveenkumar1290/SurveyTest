@@ -15,8 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenu;
+import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
 import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuAdmin;
+import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuDoctor;
 
 import java.util.Random;
 
@@ -79,39 +80,40 @@ public static final String KEY_isLogin = "isLogin";
     public static String FROM_MAP = "from_map";
     public static String Progress_msg = "Please wait..";
 
-    static String Domain_Arduino_Live = "http://dcdckidneycare.com/staging/";
+    public static String PATIENT_ID = "PATIENT_ID";
+    public static String is_PATIENT_LOGIN = "is_PATIENT_LOGIN";
+
+    static String Domain_Arduino_Live = "http://dcdckidneycare.com/";
     static String Domain_DCDC_Dev = "http://dcdc.businesstowork.com/";
 
-    public static String Domain_DCDC = Domain_DCDC_Dev;
+
+
+    public static String Domain_DCDC = Domain_Arduino_Live;
     private Context myContext;
     private ProgressDialog progressDialog;
 
-
-
-
-
-    //public static String Login_API = "/api/Arduino/Login?";//string mobileno, string pwd
-
-    public static String Registeration_API = "dcdc_web_service/patient_registrations.php";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-    public static String AppointmentReg_API = "dcdc_web_service/patient_appointment_req.php";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-    public static String BranchList_API = "dcdc_web_service/get_branch_list.php?";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-
-    public static String Login_API = "dcdc_web_service/patient_login.php?";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-    public static String ScheduleList_API = "dcdc_web_service/get_schedule_list.php?";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-
-    public static String UpdateSchedule_API = "dcdc_web_service/update_appointment_req.php";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-    public static String DeleteSchedule_API = "dcdc_web_service/delete_appointment_req.php";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-    public static String Forgot_Pwd_API = "dcdc_web_service/forgot_password_mail.php";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-    public static String Add_feedback_API = "dcdc_web_service/add_feedback.php";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-    public static String Add_monthly_feedback_API = "dcdc_web_service/feedback_form.php";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
-    public static String Admin_dash_API = "dcdc_web_service/dashboard_view.php";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
+    public static String Registeration_API = "dcdc_web_service/patient_registrations.php";
+    public static String AppointmentReg_API = "dcdc_web_service/patient_appointment_req.php";
+    public static String BranchList_API = "dcdc_web_service/get_branch_list.php?";
+    public static String Login_API = "dcdc_web_service/patient_login.php?";
+    public static String ScheduleList_API = "dcdc_web_service/get_schedule_list.php?";
+    public static String PatientList_API = "dcdc_web_service/patient_list_by_doctor_id.php?";
+    public static String BranchListByDoctor_API = "dcdc_web_service/branch_list_by_doctor_id.php?";
+    public static String UpdateSchedule_API = "dcdc_web_service/update_appointment_req.php";
+    public static String DeleteSchedule_API = "dcdc_web_service/delete_appointment_req.php";
+    public static String Forgot_Pwd_API = "dcdc_web_service/forgot_password_mail.php";
+    public static String Add_feedback_API = "dcdc_web_service/add_feedback.php";
+    public static String Add_monthly_feedback_API = "dcdc_web_service/feedback_form.php";
+    public static String Admin_dash_API = "dcdc_web_service/dashboard_view.php";
     public static String FCMTokenUpdate_API = "dcdc_web_service/add_fcm_token.php";
-    public static String Update_Pwd_API = "dcdc_web_service/change_password.php";//string UserId, string DeviceId, string DeviceName, string Pin_D4, string Pin_D5, string Pin_D6, string Pin_D7, string Pin_D8
+    public static String Update_Pwd_API = "dcdc_web_service/change_password.php";
     public static String OPD_Report_API = "dcdc_web_service/opd_report.php";//stri
-
     public static String LAB_Report_API = "dcdc_web_service/lab_report.php";//stri
-
     public static String DIALYSIS_Report_API = "dcdc_web_service/dialysis_report.php";
+    public static String Profile_Doctor_API = "dcdc_web_service/doctor_details.php?";
+    public static String Update_Profile_Update_API = "dcdc_web_service/doctor_details_update.php?";
+    public static String Upload_Feedback_Files_API = "dcdc_web_service/upload_feedback_files_api.php?";
+
 
     public UTIL(Context context) {
         myContext = context;
@@ -162,12 +164,17 @@ public static final String KEY_isLogin = "isLogin";
     public static void StartHomeActivity(Activity activity){
         String type = UTIL.getPref(activity, UTIL.Key_Type);
         if (type.equals("2")) { //patient
-            activity.  startActivity(new Intent(activity, ActivityWithNavigationMenu.class));
+            activity.  startActivity(new Intent(activity, ActivityWithNavigationMenuPatient.class));
             activity. finish();
         } else if (type.equals("1")) {  // admin
             activity.  startActivity(new Intent(activity, ActivityWithNavigationMenuAdmin.class));
             activity.  finish();
         }
+        else if (type.equals("3")) {  // BranchLocation
+            activity.  startActivity(new Intent(activity, ActivityWithNavigationMenuDoctor.class));
+            activity.  finish();
+        }
+
     }
     public static void showToast(Context context,String msg) {
         Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();

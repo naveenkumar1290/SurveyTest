@@ -68,118 +68,17 @@ import static android.text.Spanned.SPAN_INCLUSIVE_INCLUSIVE;
 public class Utility {
 
     public static final String TIMER_STARTED_FROM_ADMIN_CLOCK_MODULE = "TimerStartedFromAdminClockModule";
-    public static final String CLIENT_ID_FOR_NON_BILLABLE = "CLIENT_ID_FOR_NON_BILLABLE";
-    public static final String IS_NON_BILLABLE_IN_FRONT = "IS_NONBILLABLE_IN_FRONT";
-    public static final int OVERLAY_PERMISSION_REQUEST_CODE = 113;
-    public static final String LOGIN_USER_ROLE = "LOGIN_USER_ROLE";
-    public static final String SHOW_JOB_FILE_NEW = "SHOW_JOB_FILE_NEW";
-    public static final String KEY_CRATE_ID = "KEY_CRATE_ID";
-    public static final String KEY_BUNDLE_ELEMENT_1 = "KEY_BUNDLE_ELEMENT_1";
-    public static final String KEY_BUNDLE_ELEMENT_2 = "KEY_BUNDLE_ELEMENT_2";
-    public static final String KEY_BUNDLE_GRAPHICS_1 = "KEY_BUNDLE_GRAPHICS_1";
-    public static final String KEY_BUNDLE_GRAPHICS_2 = "KEY_BUNDLE_GRAPHICS_2";
-    public static final String KEY_BUNDLE_CRATES_1 = "KEY_BUNDLE_CRATES_1";
-    public static final String KEY_BUNDLE_CRATES_2 = "KEY_BUNDLE_CRATES_2";
-    public static final String KEY_WHATSINSIDE_TAB_ID = "KEY_WHATSINSIDE_TAB_ID";
+
     public static final String DEALER_ID = "DEALER_ID";
-    public static final String KEY_PHOTO_UPLOAD_FROM_SAME_MODULE = "MODULE_PHOTO_UPLOAD";
-    public static final String KEY_JOB_FILES_FROM_SAME_MODULE = "KEY_JOB_FILES_FROM_SAME_MODULE";
-    public static final String KEY_Jobid_or_swoid = "Jobid_or_swoid";
-    public static final String KEY_dataa = "dataa";
-    public static final String KEY_image_size = "image_size";
-    public static final String KEY_name = "name";
-    public static final String KEY_clid = "clid";
-    public static final String KEY_job_or_swo = "job_or_swo";
-    public static final String KEY_imagename = "imagename";
-    public static final String KEY_imagePath = "imagePath";
-    public static final String IS_DANAGE_REFURBISH_IN_FRONT = "IS_DANAGE_REFURBISH_IN_FRONT";
-    public static final String TIMER_STARTED_FROM_BILLABLE_MODULE = "TimerStartedFromBillableModule";
-    //public static final String PICTURE_FOR_ITEM = "PICTURE_FOR_ITEM";
-    public static final String IMAGE_PATH = "IMAGE_PATH";
-    public static final String ITEM_DESC = "ITEM_DESC";
-    public static final String JOB_ID_BILLABLE = "JOB_ID_BILLABLE";
-    public static final String COMPANY_ID_BILLABLE = "COMPANY_ID_BILLABLE";
-    public static final String PAUSED_TIME = "PAUSED_TIME";
-    public static final String KEY_JOB_ID_FOR_JOBFILES = "KEY_JOB_ID_FOR_JOBFILES";
-    public static final String KEY_PAUSED_TIMESHEET_ID = "PAUSED_TIMESHEET_ID";
-    //public static final String KEY_JOB_ID_FOR_JOBFILES = "KEY_JOB_ID_FOR_JOBFILES";
+
+    public static final String NO_INTERNET = "Lost Internet!";
     public static final String CLOCK_START_TIME = "CLOCK_START_TIME";
-    public static final String FCM_TOKEN = "FCM_TOKEN";
-    public static final String KEY_IS_EMPTY = "IS_EMPTY";
+
     public static final String TIMEGAP_JOB_START_TIME = "TIMEGAP_JOB_START_TIME";
     public static final String TIMEGAP_JOB_END_TIME = "TIMEGAP_JOB_END_TIME";
-    public static final String TIMEGAP_PREV_JOB_START_TIME = "TIMEGAP_PREV_JOB_START_TIME";
-    public static final String STARTING_BILLABLE_JOB = "STARTING_BILLABLE_JOB";
-    public static final String TIME_SHEET_ID = "TIME_SHEET_ID";
-    public static final String NO_INTERNET = "Lost Internet!";
-    public static final String MSG_OFFLINE_DATA_SAVE = "Do you want to save data offline? This will be submitted when Internet is available.";
-    public static final String SAVED = "Saved successfully!";
+
     public static final String KEY_INCOMPLETE_ASYNC_ARRAY = "INCOMPLETE_ASYNC_ARRAY";
-    public static final String KEY_OVERLAP_TIMESHEET_ARRAY = "OVERLAP_TIMESHEET_ARRAY";
-    public static final String KEY_APP_LAUNCHED_FIRST_TIME = "APP_LAUNCHED_FIRST_TIME";
-    public static final String KEY_APP_UPDATE_CHECKED = "APP_UPDATE_CHECKED";
-    public static final String KEY_APP_LATEST_VERSION = "APP_LATEST_VERSION";
-    public static final String KEY_APP_OLD_VERSION = "APP_OLD_VERSION";
 
-    public static final String KEY_IS_LOGIN = "IS_LOGIN";
-
-    public static final String NON_BILLABLE = "Non-Billable";
-    public static final String BILLABLE = "1";
-    public static final String CHANGE_TIME_CODE = "2";
-    public static final String KEY_SELECTED_SWO_STATUS = "SELECTED_SWO_STATUS";
-    public static final String USER_ROLE_ARTIST = "6";
-    public static final String USER_ROLE_APC = "5";
-    public static final String USER_ROLE_TECH = "9";
-    /*********************************CLIENT*******************************************/
-
-    public static final String CLIENT_LOGIN_userID = "CLIENT_LOGIN_userID";
-    public static final String CLIENT_LOGIN_txt_Mail = "CLIENT_LOGIN_txt_Mail";
-    public static final String CLIENT_LOGIN_CompID = "CLIENT_LOGIN_CompID";
-    public static final String CLIENT_LOGIN_CompName = "CLIENT_LOGIN_CompName";
-    public static final String CLIENT_LOGIN_UserName = "CLIENT_LOGIN_UserName";
-    public static final String CLIENT_LOGIN_UserCategory = "CLIENT_LOGIN_UserCategory";
-    public static final String CLIENT_LOGIN_CaType = "CLIENT_LOGIN_CaType";
-    public static final String CLIENT_LOGIN_DealerID = "CLIENT_LOGIN_DealerID";
-    public static final String CLIENT_LOGIN_dtype = "CLIENT_LOGIN_dtype";
-    public static final String CLIENT_LOGIN_Login_Email = "CLIENT_LOGIN_Login_Email";
-    public static final String CLIENT_LOGIN_dealer_name = "CLIENT_LOGIN_dealer_name";
-    public static final String CLIENT_LOGIN_status = "CLIENT_LOGIN_status";
-    public static final String CLIENT_LOGIN_Imagepath = "CLIENT_LOGIN_Imagepath";
-
-    public static final String CLIENT_LOGIN_Masterstatus = "CLIENT_LOGIN_Masterstatus";
-    public static final String LOGIN_TYPE_CLIENT = "LOGIN_TYPE_CLIENT";
-    public static final String LOGIN_TYPE_NORMAL = "LOGIN_TYPE_NORMAL";
-
-    public static final String LOGIN_TYPE = "LOGIN_TYPE";
-    public static final String OVERLAP_TIME_ENTRY = "OVERLAP_TIME_ENTRY";
-    public static final String USER_TIMESHEET_RIGHT = "USER_TIMESHEET_RIGHT";
-
-    public static final String PAUSED_JOB = "PAUSED_JOB";
-    public static final int CODE_SELECT_COMPANY = 124;
-    /**************************************************************************************/
-
-    //Method
-    // public static final String Method_BILLABLE_TIMESHEET = "timesheet13_Dec";
-    public static final String Method_BILLABLE_TIMESHEET = "timesheet03_April";
-    public static final String Method_NON_BILLABLE_TIMESHEET = "timesheetNonBillable3_Dec";
-    public static final String Method_CHANGE_TIME_CODE_TIMESHEET = "timesheetold3_Dec";
-
-    /********************************************Beta server************************************************/
-    public static final String HEADER = "https://";
-    public static final String URL_EP1 = HEADER + "beta.ep2.businesstowork.com/ep1";
-    public static final String URL_EP2 = HEADER + "beta.ep2.businesstowork.com";
-    public static final String KEY_NAMESPACE = "https://tempuri.org/";
-    /******************************************Live server********************************************/
-/*  public static final String HEADER = "https://";
-    public static final String URL_EP1 = HEADER + "www.exhibitpower2.com/ep1";
-    public static final String URL_EP2 = HEADER + "www.exhibitpower2.com";
-    public static final String KEY_NAMESPACE = "https://tempuri.org/";*/
-    /******************************************dev server 1********************************************/
-/*  public static final String HEADER = "http://";
-    public static final String URL_EP1 = HEADER + "staging.ep1.businesstowork.com";
-    public static final String URL_EP2 = HEADER + "staging.ep2.businesstowork.com";
-    public static final String KEY_NAMESPACE = "https://tempuri.org/";*/
-    /******************************************dev server 1********************************************/
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
@@ -191,11 +90,7 @@ public class Utility {
     public static final String IMAGE_EXTENSION = "jpg";
     public static final String VIDEO_EXTENSION = "mp4";
     /**/
-    /**************************************************************************************/
-    public static final String METHOD_BILLABLE_NONBILLABLE_CODE = "bind_code1";
-    public static final String METHOD_MY_SWO = "GetSwoByUserDealer";
-    public static final String METHOD_UNASSIGNED_SWO = "GetSwoByDealer";
-    /*************************************************************************************/
+
     private static final int NOTIFICATION_ID = 9083150;
     private static final String STR_DATE = "dd-MM-yyyy";
     private static final String STR_TIME = "HH:mm:ss";
@@ -304,7 +199,14 @@ public class Utility {
 
         return degree;
     }
-
+    public static String getPath(Uri uri, Activity activity) {
+        String[] projection = {MediaStore.MediaColumns.DATA};
+        Cursor cursor = activity
+                .managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
 
     public static String getDealerID(Context context) {
         SharedPreferences.Editor ed;

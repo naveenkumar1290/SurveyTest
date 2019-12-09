@@ -40,8 +40,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenu;
-import com.cs.nks.easycouriers.model.Doctor;
+import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
+import com.cs.nks.easycouriers.model.BranchLocation;
 import com.cs.nks.easycouriers.place_api.common.activities.SampleActivityBase_New;
 import com.cs.nks.easycouriers.util.AppController;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
@@ -102,16 +102,20 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
     //  et_Status,
     et_Remarks,
             et_DoctorName,
-            PatientName;
+            et_worker,
+            type_labor;
+
+    ;//
+    //PatientName;
     int RequestCodePickUp = 1;
     int RequestCodeDrop = 2;
     //   Spinner et_category;
     Button btnSearch;
     AlertDialog alertDialog1;
     Boolean clicked_TimeFrom = false;
-    ArrayList<Doctor> list_doctor = new ArrayList<>();
-    ArrayList<Doctor> list_patient = new ArrayList<>();
-    ArrayList<Doctor> list_status = new ArrayList<>();
+    ArrayList<BranchLocation> list_branch = new ArrayList<>();
+    //   ArrayList<BranchLocation> list_patient = new ArrayList<>();
+    ArrayList<BranchLocation> list_status = new ArrayList<>();
     UTIL util;
     // GoogleApiClient client;
     LocationRequest mLocationRequest;
@@ -129,6 +133,7 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
     private String provider;
     private FusedLocationProviderClient mFusedLocationClient;
 
+    //boolean ApiCalledSecondTime=false;
     public AppointmentFragment() {
         // Required empty public constructor
     }
@@ -188,7 +193,7 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
                 .build();
         mGoogleApiClient.connect();
 
-        getActivity().setTitle(UTIL.getTitle("Book an Appointment"));
+        getActivity().setTitle(UTIL.getTitle("Report Bonded Labor"));
 
         //setViewPager(rootView);
         util = new UTIL(getActivity());
@@ -196,10 +201,24 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
 
 
         setView(rootView);
-        getLocFromFused();
-        getIntentData();
+        //    getLocFromFused();
+        // getIntentData();
         //  callApiGetBranch();
+        getBranchesTest();
         return rootView;
+
+
+    }
+
+    private void getBranchesTest() {
+
+        list_branch.clear();
+        list_branch.add(new BranchLocation("address 1", "", "28.578050", "77.173140"));
+        list_branch.add(new BranchLocation("address 2", "", "28.633110", "77.282650"));
+        list_branch.add(new BranchLocation("address 3", "", "28.646820", "77.288190"));
+        list_branch.add(new BranchLocation("address 4", "", "28.637817", "77.243148"));
+        list_branch.add(new BranchLocation("address 5", "", "28.633550", "77.139240"));
+        list_branch.add(new BranchLocation("address 6", "", "28.685630", "77.169840"));
 
 
     }
@@ -238,10 +257,10 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
                                     // Logic to handle location object
                                     latitude = location.getLatitude();
                                     longitude = location.getLongitude();
-                                    callApiGetBranch();
+                                    callApiGetBranch(latitude, longitude);
                                     // getAddress();
                                 } else {
-                                    callApiGetBranch();
+                                    callApiGetBranch(0.000000, 0.000000);
                                 }
                             }
 
@@ -263,7 +282,10 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
         //  et_Status = (EditText) rootView.findViewById(R.id.et_Status);
         et_Remarks = (EditText) rootView.findViewById(R.id.et_Remarks);
         et_DoctorName = (EditText) rootView.findViewById(R.id.et_DoctorName);
-        PatientName = (EditText) rootView.findViewById(R.id.PatientName);
+        // PatientName = (EditText) rootView.findViewById(R.id.PatientName);
+        et_worker = (EditText) rootView.findViewById(R.id.et_worker);
+        type_labor = (EditText) rootView.findViewById(R.id.type_labor);
+
 
         btnSearch = (Button) rootView.findViewById(R.id.btnsubmitAppointment);
 
@@ -300,9 +322,10 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
                 String TimingTo = et_TimingTo.getText().toString().trim();
                 String Remarks = et_Remarks.getText().toString().trim();
 
-                if (CenterName.length() == 0) {
+               /* if (CenterName.length() == 0) {
                     Toast.makeText(getActivity(), "Please select a center!", Toast.LENGTH_SHORT).show();
-                } else if (AppointmentDate.length() == 0) {
+                } else*/
+                if (AppointmentDate.length() == 0) {
                     Toast.makeText(getActivity(), "Please enter appointment date!", Toast.LENGTH_SHORT).show();
                 } else if (TimingFrom.length() == 0) {
                     Toast.makeText(getActivity(), "Please enter timing from!", Toast.LENGTH_SHORT).show();
@@ -314,6 +337,8 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
                     if (new ConnectionDetector(getActivity()).isConnectingToInternet()) {
                         Api_Regisetration(patientId, Branch_id, CenterName, AppointmentDate,
                                 TimingFrom, TimingTo, Remarks);
+                        /*Api_Regisetration(patientId, "1", "test", AppointmentDate,
+                                TimingFrom, TimingTo, Remarks);*/
                     } else {
                         Toast.makeText(getActivity(), UTIL.NoInternet, Toast.LENGTH_SHORT).show();
                     }
@@ -324,56 +349,45 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
         });
 
 
-        // list_doctor.add(new Doctor(getResources().getString(R.string.Select_Doctor),"-1"));
-        //   list_doctor.add(new Doctor("Center 1", "1"));
-        //  list_doctor.add(new Doctor("Center 2", "2"));
-
-        //  list_patient.add(new Doctor(getResources().getString(R.string.Select_Patient),"-1"));
-        // list_patient.add(new Doctor("Patient 1", "1"));
-        //  list_patient.add(new Doctor("Patient 2", "2"));
-
-        // list_status.add(new Doctor(getResources().getString(R.string.Select_sTATUS),"-1"));
-        // list_status.add(new Doctor("Active", "1"));
-        // list_status.add(new Doctor("Inactive", "0"));
-
-
-       /* ArrayAdapter<ArrayList<Myspinner>> aa = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_dropdown_item, list_doctor);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        et_category.setAdapter(aa);*/
-
-
-/*
-        ArrayList<Myspinner> list_tankType = new ArrayList<>();
-        list_tankType.add(new Myspinner("Single Tank", "0"));
-        list_tankType.add(new Myspinner("Double Tank", "1"));*/
-
         et_DoctorName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialogNew("Center", getActivity(), et_DoctorName, list_doctor);
-            }
-        });
-        PatientName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialogNew("Patient", getActivity(), PatientName, list_patient);
+                showDialogNew("Center", getActivity(), et_DoctorName, list_branch);
             }
         });
 
+        final ArrayList<BranchLocation> TypeofWorker = new ArrayList<>();
+        TypeofWorker.add(new BranchLocation("Moulders", "", "28.578050", "77.173140"));
+        TypeofWorker.add(new BranchLocation("Loaders", "", "28.633110", "77.282650"));
+        TypeofWorker.add(new BranchLocation("Bullock cart drivers", "", "28.646820", "77.288190"));
+        TypeofWorker.add(new BranchLocation("Fireman", "", "28.637817", "77.243148"));
+        TypeofWorker.add(new BranchLocation("Supervisors/Managers", "", "28.633550", "77.139240"));
 
-      /*  et_Status.setOnClickListener(new View.OnClickListener() {
+
+        et_worker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialogNew("Status", getActivity(), et_Status, list_status);
+                showDialogNew("Type of Worker", getActivity(), et_worker, TypeofWorker);
             }
-        });*/
+        });
+        final ArrayList<BranchLocation> TypeofLabor = new ArrayList<>();
+        TypeofLabor.add(new BranchLocation("Bonded Labor", "", "28.578050", "77.173140"));
+        TypeofLabor.add(new BranchLocation("Child Labor", "", "28.633110", "77.282650"));
+        TypeofLabor.add(new BranchLocation("Informal Labor", "", "28.646820", "77.288190"));
 
+
+        type_labor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogNew("Type of Labor", getActivity(), type_labor, TypeofLabor);
+            }
+        });
 
     }
 
-    private void callApiGetBranch() {
+    private void callApiGetBranch(double latitude, double longitude) {
         if (new ConnectionDetector(getActivity()).isConnectingToInternet()) {
-            getBranch();
+            getBranch(latitude, longitude);
         } else {
             Toast.makeText(getActivity(), "No internet", Toast.LENGTH_SHORT).show();
         }
@@ -439,12 +453,7 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
         String dayOfMonthString = dayOfMonth < 10 ? "0" + dayOfMonth : "" + dayOfMonth;
         String monthOfYearString = monthOfYear < 10 ? "0" + monthOfYear : "" + monthOfYear;
 
-        //2018-01-19%20
-
-        // String  date_1 = year + "-" + monthOfYearString + "-" + dayOfMonthString;
         String date_1 = dayOfMonthString + "-" + monthOfYearString + "-" + year;
-
-
         et_AppointmentDate.setText(date_1);
 
     }
@@ -470,7 +479,7 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
 
     }
 
-    public void showDialogNew(String dialog_title, final Context context, final EditText editText, ArrayList<Doctor> list) {
+    public void showDialogNew(String dialog_title, final Context context, final EditText editText, ArrayList<BranchLocation> list) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.custom_dialog, null);
@@ -480,18 +489,15 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
         final ListView listvw = (ListView) dialogView.findViewById(R.id.listview);
 
 
-        ArrayAdapter<Doctor> adapter = new ArrayAdapter<Doctor>(context,
+        ArrayAdapter<BranchLocation> adapter = new ArrayAdapter<BranchLocation>(context,
                 android.R.layout.simple_list_item_1, android.R.id.text1, list);
         listvw.setAdapter(adapter);
-
-        //  listvw.setSelection();
-
 
         listvw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-                Doctor spinner_ = (Doctor) listvw.getItemAtPosition(position);
+                BranchLocation spinner_ = (BranchLocation) listvw.getItemAtPosition(position);
                 String txt = spinner_.get_text();
                 Branch_id = spinner_.get_id();
                 editText.setText(txt);
@@ -507,8 +513,6 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
             }
         });
 
-        ///// new work
-
 
         dialogBuilder.setTitle(dialog_title);
 
@@ -518,9 +522,11 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
         }
     }
 
-    public void getBranch() {
+    public void getBranch(double lat, double lng) {
+
+
         util.showProgressDialog(UTIL.Progress_msg);
-        String url = UTIL.Domain_DCDC + UTIL.BranchList_API + "lat=" + String.valueOf(latitude) + "&long=" + String.valueOf(longitude);
+        String url = UTIL.Domain_DCDC + UTIL.BranchList_API + "lat=" + String.valueOf(lat) + "&long=" + String.valueOf(lng);
 
         if (latitude == 0 || longitude == 0) {
             url = UTIL.Domain_DCDC + UTIL.BranchList_API;
@@ -549,22 +555,28 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
                                     String branch_number = jsonObject.getString("branch_number");
                                     String mobile_number = jsonObject.getString("mobile_number");
                                     String email = jsonObject.getString("email");
-                                    String address = jsonObject.getString("address");
+                                    //    String address = jsonObject.getString("address");
                                     String city_name = jsonObject.getString("city_name");
 
                                     String lat = jsonObject.getString("latitude");
                                     String lng = jsonObject.getString("longitude");
 
 
-                                    list_doctor.add(new Doctor(branch_name, branch_id, lat, lng));
+                                    list_branch.add(new BranchLocation(branch_name, branch_id, lat, lng));
                                 }
 
                                 setBranchFromMap();
                             }
 
+
                         } catch (Exception e) {
                             e.getCause();
                         }
+
+                        if (list_branch.isEmpty()) {
+                            callApiGetBranch(0.000000, 0.000000);
+                        }
+
 
                     }
                 }, new Response.ErrorListener() {
@@ -586,7 +598,7 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
             Branch_id = map_branchId;
             et_DoctorName.setText(map_branchName);
         }
-//        for(Doctor doctor:list_doctor){
+//        for(BranchLocation doctor:list_branch){
 //           String branchID= doctor.get_id();
 //           if(map_branchId.equals(branchID)){
 //
@@ -621,9 +633,9 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
                             if (status.equals("1")) {
                                 Toast.makeText(getActivity(), "Successful", Toast.LENGTH_SHORT).show();
                                 //  getActivity().finish();
-                              /*  Intent i = new Intent(getActivity(), ActivityWithNavigationMenu.class);
+                              /*  Intent i = new Intent(getActivity(), ActivityWithNavigationMenuPatient.class);
                                 startActivity(i);*/
-                                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new ScheduleFragment());
+                                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ScheduleFragment());
 
                             } else {
                                 Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
@@ -896,16 +908,16 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
             e.getMessage();
         }
     }
-  /*  private boolean isGooglePlayServicesAvailable() {
-        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
-        if (ConnectionResult.SUCCESS == status) {
-            return true;
-        } else {
-            GooglePlayServicesUtil.getErrorDialog(status, getActivity(), 0).show();
-            return false;
-        }
-    }*/
 
+    /*  private boolean isGooglePlayServicesAvailable() {
+          int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
+          if (ConnectionResult.SUCCESS == status) {
+              return true;
+          } else {
+              GooglePlayServicesUtil.getErrorDialog(status, getActivity(), 0).show();
+              return false;
+          }
+      }*/
     public class AsyncGetLocation extends AsyncTask<String, Void, String> {
         ProgressDialog progressDoalog;
 
@@ -952,11 +964,12 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
                 if (mLastLocation != null) {
                     latitude = mLastLocation.getLatitude();
                     longitude = mLastLocation.getLongitude();
-                    callApiGetBranch();
+                    callApiGetBranch(latitude, longitude);
                     //    getAddress();
 
                 } else {
                     //Couldn't find location, do something like show an alert dialog
+                    callApiGetBranch(0.000000, 0.000000);
                 }
 
             } catch (SecurityException e) {

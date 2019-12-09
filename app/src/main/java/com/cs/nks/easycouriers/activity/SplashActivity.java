@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
 /*
                         String type = UTIL.getPref(SplashActivity.this, UTIL.Key_Type);
                         if (type.equals("2")) { //patient
-                            startActivity(new Intent(SplashActivity.this, ActivityWithNavigationMenu.class));
+                            startActivity(new Intent(SplashActivity.this, ActivityWithNavigationMenuPatient.class));
                             finish();
                         } else if (type.equals("1")) {  // admin
                             startActivity(new Intent(SplashActivity.this, AdminDashboardActivity.class));

@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
+import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
 import com.cs.nks.easycouriers.activity.Tab_Login_Register_Activity;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;
@@ -109,12 +110,12 @@ public class RegisterFragment extends Fragment implements DatePickerDialog.OnDat
                     Toast.makeText(getActivity(), "Please enter 10 digit mobile no.!", Toast.LENGTH_SHORT).show();
                 } else if (!UTIL.isValidEmail(_email)) {
                     Toast.makeText(getActivity(), "Please enter valid mail id!", Toast.LENGTH_SHORT).show();
-                } else if (_address.length() == 0) {
-                    Toast.makeText(getActivity(), "Please enter address!", Toast.LENGTH_SHORT).show();
-                } else if (_et_dob.length() == 0) {
-                    Toast.makeText(getActivity(), "Please enter date of birth!", Toast.LENGTH_SHORT).show();
-                } else if (_blood_group.length() == 0) {
-                    Toast.makeText(getActivity(), "Please enter blood group!", Toast.LENGTH_SHORT).show();
+                //} else if (_address.length() == 0) {
+                 //   Toast.makeText(getActivity(), "Please enter address!", Toast.LENGTH_SHORT).show();
+              //  } else if (_et_dob.length() == 0) {
+               //     Toast.makeText(getActivity(), "Please enter date of birth!", Toast.LENGTH_SHORT).show();
+               // } else if (_blood_group.length() == 0) {
+               //     Toast.makeText(getActivity(), "Please enter blood group!", Toast.LENGTH_SHORT).show();
                 } else if (_password.length() == 0) {
                     Toast.makeText(getActivity(), "Please enter password!", Toast.LENGTH_SHORT).show();
                 } else if (_confirm_password.length() == 0) {
@@ -123,8 +124,10 @@ public class RegisterFragment extends Fragment implements DatePickerDialog.OnDat
                     Toast.makeText(getActivity(), "Password and confirm password didn't match!", Toast.LENGTH_SHORT).show();
                 } else {
                     if (new ConnectionDetector(getActivity()).isConnectingToInternet()) {
-                        Api_Regisetration(_name, _gender, _mobile,
-                                _email, _address, _et_dob, _blood_group, _remarks, _password);
+                      //  Api_Regisetration(_name, _gender, _mobile, _email, _address, _et_dob, _blood_group, _remarks, _password);
+                        Toast.makeText(getActivity(), "Successfully Registered!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(myContext, ActivityWithNavigationMenuPatient.class));
+                        getActivity().finish();
                     } else {
                         Toast.makeText(getActivity(), UTIL.NoInternet, Toast.LENGTH_SHORT).show();
                     }
@@ -162,9 +165,9 @@ public class RegisterFragment extends Fragment implements DatePickerDialog.OnDat
         dpd.setVersion(DatePickerDialog.Version.VERSION_1);
         dpd.setAccentColor(getResources().getColor(R.color.colorAccent));
 
-        dpd.setTitle("Select Date");
+        dpd.setTitle("Select DOB");
         dpd.setYearRange(1985, 2028);
-        dpd.setMinDate(calendar);
+      //  dpd.setMinDate(calendar);
         dpd.show(getActivity().getFragmentManager(), "dialog");
 
 

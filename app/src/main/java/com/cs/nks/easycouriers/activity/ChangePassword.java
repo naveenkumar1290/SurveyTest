@@ -76,13 +76,15 @@ public class ChangePassword extends AppCompatActivity {
                 } else {
                     if (new ConnectionDetector(myContext).isConnectingToInternet()) {
 
-                        Api_Change_Pwd(old_pwd, pwd);
+                      //  Api_Change_Pwd(old_pwd, pwd);
                     } else {
                         Toast.makeText(myContext,
                                 UTIL.NoInternet, Toast.LENGTH_SHORT)
                                 .show();
                     }
-
+                    Toast.makeText(myContext,
+                           "Demo!", Toast.LENGTH_SHORT)
+                            .show();
                 }
 
 

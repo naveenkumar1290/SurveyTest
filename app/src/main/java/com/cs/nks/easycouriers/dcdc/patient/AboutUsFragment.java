@@ -36,7 +36,7 @@ public class AboutUsFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View rootView = inflater.inflate(R.layout.activity_about_us, container, false);
-        getActivity().setTitle("About Us");
+        getActivity().setTitle("FAQ");
         myContext = getActivity();
 
 

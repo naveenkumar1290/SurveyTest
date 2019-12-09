@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/dcdc_bg"
+
     android:padding="10dp">
 
 
@@ -226,6 +226,7 @@ android:maxLength="10"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_location_on_black_24dp"
                         android:drawablePadding="5dp"
+                        android:visibility="gone"
                         android:hint="Address"
                         android:drawableTint="@color/colorPrimary"
                         android:inputType="text" />
@@ -240,6 +241,7 @@ android:maxLength="10"
                         android:drawablePadding="5dp"
                         android:drawableTint="@color/colorPrimary"
                         android:editable="false"
+                        android:visibility="gone"
                         android:focusableInTouchMode="false"
                         android:hint="Date of Birth(dd-MM-yyyy)"
                         android:inputType="none"
@@ -257,6 +259,7 @@ android:maxLength="10"
                         android:drawableTint="@color/colorPrimary"
                         android:hint="Blood Group"
                         android:maxLines="1"
+                        android:visibility="gone"
                         android:inputType="text" />
 
                    <!-- <EditText
@@ -281,6 +284,7 @@ android:maxLength="10"
                         android:drawablePadding="5dp"
                         android:drawableTint="@color/colorPrimary"
                         android:hint="Remarks"
+                        android:visibility="gone"
                         android:inputType="text" />
                     <!--</android.support.design.widget.TextInputLayout>
             -->

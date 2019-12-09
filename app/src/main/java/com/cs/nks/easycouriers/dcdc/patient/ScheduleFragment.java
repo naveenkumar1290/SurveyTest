@@ -4,6 +4,7 @@ package com.cs.nks.easycouriers.dcdc.patient;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -62,10 +63,9 @@ public class ScheduleFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View rootView = inflater.inflate(R.layout.fragment_about_us, container, false);
-        getActivity().setTitle("Your Schedule");
+        getActivity().setTitle("Assigned Kilns");
         myContext = getActivity();
         util = new UTIL(getActivity());
-
 
         setView(rootView);
 
@@ -76,7 +76,8 @@ public class ScheduleFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getSchedule();
+      //  getSchedule();
+        addData();
     }
 
     private void setView(View rootView) {
@@ -97,6 +98,22 @@ public class ScheduleFragment extends Fragment {
        /* mAdapter = new MoviesAdapter(getActivity(), list_ClientUser);
         recyclerView.setAdapter(mAdapter);
 */
+    }
+
+
+    private void addData(){
+        list_ClientUser.clear();
+        list_ClientUser.add(new ClientUserAll("1", "17-05-2019","","","Location 1","Address 1","2","test","258714525","28.578050,77.173140","77.173140"));
+        list_ClientUser.add(new ClientUserAll("1", "18-05-2019","","","Location 2","Address 2","2","test","258714525","28.633110,77.282650","77.282650"));
+        list_ClientUser.add(new ClientUserAll("1", "19-05-2019","","","Location 3","Address 3","2","test","258714525","28.646820,77.288190","77.288190"));
+        list_ClientUser.add(new ClientUserAll("1", "20-05-2019","","","Location 4","Address 4","2","test","258714525","28.637817,77.243148","77.243148"));
+
+        list_ClientUser.add(new ClientUserAll("1", "19-05-2019","","","Location 5","Address 5","2","test","258714525","28.633550,77.139240","77.139240"));
+        list_ClientUser.add(new ClientUserAll("1", "20-05-2019","","","Location 6","Address 6","2","test","258714525","28.685630,77.169840","77.169840"));
+
+        mAdapter = new MoviesAdapter(getActivity(), list_ClientUser);
+        recyclerView.setAdapter(mAdapter);
+
     }
 
     public void getSchedule() {
@@ -132,6 +149,7 @@ public class ScheduleFragment extends Fragment {
                                     String day = jsonObject.getString("day");
                                     String city = jsonObject.getString("city_name");
                                     String address = jsonObject.getString("address");
+                                    //String address = "";
                                     String status_id = jsonObject.getString("status_id");
                                     String branch_name = jsonObject.getString("branch_name");
                                     String patient_reports = jsonObject.getString("patient_reports");
@@ -149,18 +167,19 @@ public class ScheduleFragment extends Fragment {
 
                                 }
                             }
-                            mAdapter = new MoviesAdapter(getActivity(), list_ClientUser);
-                            recyclerView.setAdapter(mAdapter);
-
-                            if(list_ClientUser.size()<1){
-                                tv_msg.setVisibility(View.VISIBLE);
-                            }
-                            else {
-                                tv_msg.setVisibility(View.GONE);
-                            }
 
                         } catch (Exception e) {
                             e.getCause();
+                        }
+
+                        mAdapter = new MoviesAdapter(getActivity(), list_ClientUser);
+                        recyclerView.setAdapter(mAdapter);
+
+                        if(list_ClientUser.size()<1){
+                            tv_msg.setVisibility(View.VISIBLE);
+                        }
+                        else {
+                            tv_msg.setVisibility(View.GONE);
                         }
 
                     }
@@ -239,7 +258,7 @@ public class ScheduleFragment extends Fragment {
                 holder.remarks.setText(projectPhoto.getMasterName());
             }
             String status = projectPhoto.getCaType();
-            if (status.equals("2")) {   // Approved
+          /*  if (status.equals("2")) {   // Approved
                 holder.column.setBackgroundColor(getResources().getColor(R.color.green_material2));
                 holder.Status.setText("Approved");
             } else if (status.equals("1")) { // Under Process
@@ -254,8 +273,8 @@ public class ScheduleFragment extends Fragment {
             } else if (status.equals("5")) {// Dialysis Done
                 holder.column.setBackgroundColor(getResources().getColor(R.color.green_material2));
                 holder.Status.setText("Completed");
-            }
-            if (status.equals("5")) {// Dialysis Done
+            }*/
+            /*if (status.equals("5")) {// Dialysis Done
                 holder.btn_Report.setVisibility(View.VISIBLE);
                 holder.imgvw_delete.setVisibility(View.GONE);
                 holder.imgvw_edit.setVisibility(View.GONE);
@@ -265,7 +284,7 @@ public class ScheduleFragment extends Fragment {
                 holder.imgvw_delete.setVisibility(View.VISIBLE);
                 holder.imgvw_edit.setVisibility(View.VISIBLE);
                 holder.btn_feedback.setVisibility(View.GONE);
-            }
+            }*/
 
 
 /*
@@ -278,15 +297,35 @@ public class ScheduleFragment extends Fragment {
             holder.imgvw_edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(), UpdateScheduleActivity.class);
+                  /*  Intent intent = new Intent(getActivity(), UpdateScheduleActivity.class);
                     intent.putExtra("flag", "1");
                     intent.putExtra("appointment_Id", projectPhoto.getUserID());
                     intent.putExtra("Date", projectPhoto.getTxt_Mail());
                     intent.putExtra("Timeing_From", projectPhoto.getCompID());
                     intent.putExtra("Timeing_To", projectPhoto.gettxt_Mobile());
-                    startActivity(intent);
+                    startActivity(intent);*/
+
+
+                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("google.navigation:q=" + projectPhoto.getReport()));
+                        myContext.startActivity(intent);
+
+
                 }
             });
+
+
+            holder.parentView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("google.navigation:q=" + projectPhoto.getReport()));
+                    myContext.startActivity(intent);
+
+
+                }
+            });
+
+
             holder.imgvw_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

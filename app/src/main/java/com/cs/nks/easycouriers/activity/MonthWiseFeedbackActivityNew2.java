@@ -38,6 +38,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.cs.nks.easycouriers.R;
+import com.cs.nks.easycouriers.dcdc.patient.MapsActivity;
 import com.cs.nks.easycouriers.model.ImagePath;
 import com.cs.nks.easycouriers.retrofit_multipart.ApiService;
 import com.cs.nks.easycouriers.retrofit_multipart.ProgressRequestBody;
@@ -48,6 +49,7 @@ import com.cs.nks.easycouriers.util.UTIL;
 import com.cs.nks.easycouriers.util.Utility;
 import com.darsh.multipleimageselect.activities.AlbumSelectActivity;
 import com.darsh.multipleimageselect.models.Image;
+import com.google.android.gms.maps.model.LatLng;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -457,6 +459,14 @@ public class MonthWiseFeedbackActivityNew2 extends AppCompatActivity implements 
 
     }
 
+
+
+
+
+
+
+
+
     private void multipartImageUpload() {
         if (Count_Image_Uploaded < list_path.size())
             Count_Image_Uploaded++;
@@ -483,8 +493,10 @@ public class MonthWiseFeedbackActivityNew2 extends AppCompatActivity implements 
             }
 
             String patientId = UTIL.getPref(myContext, UTIL.Key_UserId);
-            String url = "http://dcdc.businesstowork.com/dcdc_web_service/upload_feedback_files_api.php?" + "p_id=" + patientId + "&branch_id=" + "1";
+         //   String url = UTIL.Domain_DCDC+"dcdc_web_service/upload_feedback_files_api.php?" + "p_id=" + patientId + "&branch_id=" + branchId;
 
+            String url = UTIL.Domain_DCDC + UTIL.Upload_Feedback_Files_API + "p_id=" + patientId + "&branch_id=" + branchId;
+          //  String url = UTIL.Domain_DCDC + "dcdc_web_service/upload_file.php";
             Call<ResponseBody> req = apiService.uploadMedia(surveyImagesParts, url);
             req.enqueue(new Callback<ResponseBody>() {
                 @Override
@@ -501,20 +513,25 @@ public class MonthWiseFeedbackActivityNew2 extends AppCompatActivity implements 
 
 
                             if (status.equals("1")) {
-                                JSONArray jsonArray = jsonObject.getJSONArray("files");
+                               // JSONArray jsonArray = jsonObject.getJSONArray("files");
+                                 feedback_files = jsonObject.getString("filename");
+
+
+
+
                               /*  for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                     String name = jsonObject1.getString("name");
                                     list_UploadImageName.add(name);
                                 }*/
 
-                                String res = jsonArray.toString();
+                              /*  String res = jsonArray.toString();
                                 res = res.replaceAll("\"", "");
                                 feedback_files = res.substring(res.indexOf("[") + 1, res.indexOf("]"));
 
                                 String imagesIds[] = res.split(",");
                                 //  list_UploadImageName = new ArrayList<String>(Arrays.asList(imagesIds));
-
+*/
 
                                 callSubmitFeedback();
                             } else {
@@ -829,5 +846,12 @@ public class MonthWiseFeedbackActivityNew2 extends AppCompatActivity implements 
                 cross = convertview.findViewById(R.id.cross);
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(MonthWiseFeedbackActivityNew2.this, ActivityWithNavigationMenuPatient.class);
+        startActivity(i);
+        finish();
     }
 }

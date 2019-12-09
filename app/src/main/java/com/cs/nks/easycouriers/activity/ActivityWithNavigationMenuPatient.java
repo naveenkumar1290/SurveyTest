@@ -1,10 +1,12 @@
 package com.cs.nks.easycouriers.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -34,21 +36,29 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
+import com.cs.nks.easycouriers.dcdc.patient.AboutUsFragment;
 import com.cs.nks.easycouriers.dcdc.patient.AppointmentFragment;
+import com.cs.nks.easycouriers.dcdc.patient.DamageReportNew;
 import com.cs.nks.easycouriers.dcdc.patient.DasboardFragmentNew;
+import com.cs.nks.easycouriers.dcdc.patient.EnvironmentFragment;
 import com.cs.nks.easycouriers.dcdc.patient.MapsActivity;
 import com.cs.nks.easycouriers.dcdc.patient.Reportfragment;
 import com.cs.nks.easycouriers.dcdc.patient.ScheduleFragment;
 import com.cs.nks.easycouriers.util.AppController;
+import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;
 
 import org.json.JSONObject;
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class ActivityWithNavigationMenu extends AppCompatActivity
+public class ActivityWithNavigationMenuPatient extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Context myContext;
@@ -59,11 +69,20 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
     boolean doubleBackToExitPressedOnce = false;
     int cnt = 0;
 
+    public static Fragment getReportFragment(String PatientID, String is_PATIENT_LOGIN) {
+        Reportfragment reportfragment = new Reportfragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(UTIL.PATIENT_ID, PatientID);
+        bundle.putString(UTIL.is_PATIENT_LOGIN, is_PATIENT_LOGIN);
+        reportfragment.setArguments(bundle);
+        return reportfragment;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_menu);
-        myContext = ActivityWithNavigationMenu.this;
+        myContext = ActivityWithNavigationMenuPatient.this;
         // utill = new UTIL(myContext);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -80,17 +99,21 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
 
         manupulateDrawerItems();
 
+        if (new ConnectionDetector(ActivityWithNavigationMenuPatient.this).isConnectingToInternet()) {
+      //      new checkVersionUpdate().execute();
+        }
+
         HandleIntent();
-
-        UpdateToken();
-
+      //  UpdateToken();
 
 
     }
 
+    private void HandleIntent() {
+        addScheduleListFragment();
 
-    private void HandleIntent(){
-        Bundle b = getIntent().getExtras();
+
+      /*  Bundle b = getIntent().getExtras();
         if (b != null) {
             String isFromPush = b.getString("push", "");
             String isFromMap = b.getString("map", "");
@@ -99,7 +122,7 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
             } else if (isFromMap.equalsIgnoreCase("1")) {
                 add_BookAppointment_Fragment(b);
             } else {
-               // addHomeFragment();
+                // addHomeFragment();
                 // ATTENTION: This was auto-generated to handle app links.
                 Intent appLinkIntent = getIntent();
                 String appLinkAction = appLinkIntent.getAction();
@@ -109,13 +132,13 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
         } else {
             addHomeFragment();
         }
-
+*/
     }
 
-    private void UpdateToken(){
-        String type = UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_Type);
+    private void UpdateToken() {
+        String type = UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_Type);
         if (type.equals("2")) { //patient
-            String FCMToken = UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_FCMTOken);
+            String FCMToken = UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_FCMTOken);
             if (!FCMToken.equals("")) {
                 UpdateFCMTokenAtServer();
             }
@@ -172,19 +195,24 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
 /***********************************************/
         if (id == R.id.nav_Home) {
             //   replaceFragmnt(new DasboardFragment());
-            replaceFragmnt(new DasboardFragmentNew());
-        } else if (id == R.id.nav_book) {
-            replaceFragmnt(new AppointmentFragment());
-        } else if (id == R.id.nav_AboutUs) {
             replaceFragmnt(new ScheduleFragment());
+
+        } else if (id == R.id.nav_book) {
+           // replaceFragmnt(new AppointmentFragment());
+            replaceFragmnt(new DamageReportNew());
+
+        } else if (id == R.id.nav_AboutUs) {
+            replaceFragmnt(new EnvironmentFragment());
         } else if (id == R.id.nav_HowItWorks) {
             // replaceFragmnt(new ReportsFragment());
-            replaceFragmnt(new Reportfragment());
+           // String patientId = UTIL.getPref(myContext, UTIL.Key_UserId);
+           // Fragment fragment = getReportFragment(patientId, "1");
+            replaceFragmnt(new AboutUsFragment());
         } else if (id == R.id.nav_ChangePass) {
-            startActivity(new Intent(ActivityWithNavigationMenu.this, ChangePassword.class));
+            startActivity(new Intent(ActivityWithNavigationMenuPatient.this, ChangePassword.class));
 
         } else if (id == R.id.nav_Center) {
-            startActivity(new Intent(ActivityWithNavigationMenu.this, MapsActivity.class));
+            startActivity(new Intent(ActivityWithNavigationMenuPatient.this, MapsActivity.class));
         } else if (id == R.id.nav_logout) {
             dialog_LOGOUT();
         }
@@ -198,6 +226,7 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
     }
 
+
     public void replaceFragmnt(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -205,7 +234,7 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
         fragmentTransaction.replace(R.id.frgmnt_placehodler, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        ActivityWithNavigationMenu.this.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+        ActivityWithNavigationMenuPatient.this.overridePendingTransition(R.anim.left_in, R.anim.left_out);
         //HomeActivity.this.overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up );
     }
 
@@ -214,7 +243,7 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
         /*set drawer menu programmatically*/
         ImageView imageView;
         TextView textviewUsr;
-        String Uid = UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_UserId);
+        String Uid = UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_UserId);
         if (true) {
             //if (Uid != null && (!Uid.equals(""))) {
             navigationView.inflateMenu(R.menu.menu_drawer);
@@ -226,13 +255,13 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
             imageView = (ImageView) headerLayout.findViewById(R.id.imageView);
             textviewUsr = (TextView) headerLayout.findViewById(R.id.textUserName);
             imageView.setVisibility(View.VISIBLE);
-//            String user = UTIL.getPref(ActivityWithNavigationMenu.this,
+//            String user = UTIL.getPref(ActivityWithNavigationMenuPatient.this,
 //                    UTIL.Key_USERNAME);
             String user = "Guest";
 
             textviewUsr.setText(user);
             // imageView.setBackgroundResource(R.drawable.mannnnn);
-//            if (UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_GENDER).equalsIgnoreCase("M") || UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_GENDER).equalsIgnoreCase("MALE")) {
+//            if (UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_GENDER).equalsIgnoreCase("M") || UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_GENDER).equalsIgnoreCase("MALE")) {
 //                imageView.setBackgroundResource(R.drawable.mannnnn);
 //            } else {
 //                imageView.setBackgroundResource(R.drawable.woman);
@@ -247,8 +276,8 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
 
             TextView navFooter1 = findViewById(R.id.txt_version);
             try {
-                PackageManager manager = ActivityWithNavigationMenu.this.getPackageManager();
-                PackageInfo info = manager.getPackageInfo(ActivityWithNavigationMenu.this.getPackageName(), 0);
+                PackageManager manager = ActivityWithNavigationMenuPatient.this.getPackageManager();
+                PackageInfo info = manager.getPackageInfo(ActivityWithNavigationMenuPatient.this.getPackageName(), 0);
                 String versionName = info.versionName;
                 navFooter1.setText("v" + versionName);
             } catch (Exception e) {
@@ -288,10 +317,10 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 alertDialog.dismiss();
-                UTIL.clearPref(ActivityWithNavigationMenu.this);
-                Intent abc = new Intent(ActivityWithNavigationMenu.this, Tab_Login_Register_Activity.class);
+                UTIL.clearPref(ActivityWithNavigationMenuPatient.this);
+                Intent abc = new Intent(ActivityWithNavigationMenuPatient.this, Tab_Login_Register_Activity.class);
                 startActivity(abc);
-                Toast.makeText(ActivityWithNavigationMenu.this, "Logout successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityWithNavigationMenuPatient.this, "Logout successfully", Toast.LENGTH_SHORT).show();
                 finish();
 
             }
@@ -315,7 +344,7 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            try {
+            /*try {
                 DasboardFragmentNew myFragment = (DasboardFragmentNew) getSupportFragmentManager().findFragmentByTag("1");
                 if (myFragment != null && myFragment.isVisible()) {
                     dialog_Exit();
@@ -326,6 +355,9 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
                 e.getMessage();
                 addHomeFragment();
             }
+*/
+
+            finish();
 
         }
     }
@@ -353,7 +385,7 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 alertDialog.dismiss();
-                ActivityWithNavigationMenu.this.finishAffinity();
+                ActivityWithNavigationMenuPatient.this.finishAffinity();
 
 
             }
@@ -405,8 +437,8 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
                 }) {
             @Override
             protected Map<String, String> getParams() {
-                String UserId = UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_UserId);
-                String FCMToken = UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_FCMTOken);
+                String UserId = UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_UserId);
+                String FCMToken = UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_FCMTOken);
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("userid", UserId);
                 params.put("fcm_token_id", FCMToken);
@@ -414,7 +446,7 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
                 return params;
             }
         };
-        RequestQueue queue = Volley.newRequestQueue(ActivityWithNavigationMenu.this);
+        RequestQueue queue = Volley.newRequestQueue(ActivityWithNavigationMenuPatient.this);
         queue.add(postRequest);
     }
 
@@ -424,8 +456,8 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
 
         String tag_string_req = "req_login";
         String URL = null;
-        String UserId = UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_UserId);
-        String FCMToken = UTIL.getPref(ActivityWithNavigationMenu.this, UTIL.Key_FCMTOken);
+        String UserId = UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_UserId);
+        String FCMToken = UTIL.getPref(ActivityWithNavigationMenuPatient.this, UTIL.Key_FCMTOken);
 
         Map<String, String> params = new HashMap<>();
         params.put("userid", UserId);
@@ -457,5 +489,147 @@ public class ActivityWithNavigationMenu extends AppCompatActivity
 
     }
 
+    private void dialog_Update() {
 
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.fancyalertdialog, null);
+        dialogBuilder.setView(dialogView);
+
+
+        final TextView title = dialogView.findViewById(R.id.title);
+        final TextView message = dialogView.findViewById(R.id.message);
+        final Button positiveBtn = dialogView.findViewById(R.id.positiveBtn);
+        final Button negativeBtn = dialogView.findViewById(R.id.negativeBtn);
+
+
+        // dialogBuilder.setTitle("Device Details");
+        title.setText("New Update Available.");
+        message.setText("Please update to the latest version!");
+        positiveBtn.setText("OK");
+        negativeBtn.setText("No");
+        negativeBtn.setVisibility(View.GONE);
+        positiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+                final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
+
+                finish();
+
+
+            }
+        });
+        negativeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog = dialogBuilder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.show();
+
+    }
+
+    private class checkVersionUpdate extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(ActivityWithNavigationMenuPatient.this);
+            progressDialog.setMessage(getString(R.string.Loading_text));
+            progressDialog.setCancelable(false);
+            progressDialog.setCanceledOnTouchOutside(false);
+
+            try {
+                progressDialog.show();
+            } catch (Exception e) {
+                e.getMessage();
+            }
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String val = "0.0";
+            final String NAMESPACE = "https://tempuri.org/";
+            final String URL = "https://www.exhibitpower2.com/WebService/techlogin_service.asmx";
+            final String METHOD_NAME = "GetVersion";
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            try {
+
+                final String appPackageName = getPackageName();
+                String address = "https://play.google.com/store/apps/details?id=" + appPackageName;
+                request.addProperty("address", address);
+
+                SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11); // put all required data into a soap
+                envelope.dotNet = true;
+                envelope.setOutputSoapObject(request);
+                HttpTransportSE httpTransport = new HttpTransportSE(URL);
+                httpTransport.call(SOAP_ACTION, envelope);
+                Object results = (Object) envelope.getResponse();
+                val = results.toString();
+
+
+            } catch (Exception e) {
+                e.getMessage();
+            }
+            return val;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // TODO Auto-generated method stub
+            // String ver = result;
+            super.onPostExecute(result);
+            try {
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    try {
+                        progressDialog.dismiss();
+                    } catch (Exception e) {
+                        e.getMessage();
+                    }
+                }
+            } catch (Exception e) {
+                e.getMessage();
+            }
+
+            try {
+
+                PackageManager manager = ActivityWithNavigationMenuPatient.this.getPackageManager();
+                PackageInfo info = manager.getPackageInfo(ActivityWithNavigationMenuPatient.this.getPackageName(), 0);
+                String VersionName = info.versionName;
+                //String nversionName = result;
+                if (result == null) {
+                    result = "0";
+                }
+                Double PlayStoreVersion = Double.parseDouble(result);
+                Double AppVersionName = Double.parseDouble(VersionName);
+
+                if (AppVersionName < PlayStoreVersion) {
+                    //  if (true) {
+                    dialog_Update();
+                }
+
+            } catch (Exception err) {
+                err.getMessage();
+            }
+
+
+        }
+
+
+    }
 }

@@ -1,12 +1,18 @@
 package com.cs.nks.easycouriers.fcm;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -16,7 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenu;
+import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
 import com.cs.nks.easycouriers.activity.MonthWiseFeedbackActivityNew2;
 import com.cs.nks.easycouriers.util.UTIL;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -25,12 +31,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.android.volley.VolleyLog.TAG;
-
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
-
-
 
     @Override
     public void onMessageReceived(RemoteMessage message) {
@@ -45,8 +47,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String msg = data.get("message");
             String badge = data.get("badge");
             String Branch_Id = data.get("Branch_Id");
-            sendMyNotification(title,body,msg,Branch_Id);
-           // sendMyNotification(Branch_Id,Branch_Id,Branch_Id);
+          //  sendMyNotification(title,body,msg,Branch_Id);
+            startNotification(title,body,msg,Branch_Id);
+
 
         }
 
@@ -70,21 +73,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
     }
-
-
-
     private void sendMyNotification(String title,String message,String type,String Branch_Id) {
         //On click of notification it redirect to this Activity
         Intent intent=null;
         if (type.equals("1")){ // push for appointment approve/reject/completed
-            intent = new Intent(this, ActivityWithNavigationMenu.class);
+            intent = new Intent(this, ActivityWithNavigationMenuPatient.class);
         }
         else if(type.equals("2")){ //push for requesting monthly feedback
              intent = new Intent(this, MonthWiseFeedbackActivityNew2.class);
         }
 
 
-     //   Intent intent = new Intent(this, ActivityWithNavigationMenu.class);
+     //   Intent intent = new Intent(this, ActivityWithNavigationMenuPatient.class);
         intent.putExtra("push","1");
         intent.putExtra("Branch_Id",Branch_Id);
 
@@ -99,6 +99,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(soundUri)
+                .setChannelId("my_channel_id_00011") // set channel id
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =
@@ -106,7 +107,109 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         notificationManager.notify(UTIL.random_number_notificationId(), notificationBuilder.build());
     }
+    public  void startNotification(String title,String message,String type,String Branch_Id) {
+        // TODO Auto-generated method stub
+        NotificationCompat.Builder notification;
+        PendingIntent pIntent;
+        NotificationManager manager;
+       // Intent resultIntent;
 
+        TaskStackBuilder stackBuilder;
+        Intent intent=null;
+        if (type.equals("1")){ // push for appointment approve/reject/completed
+            intent = new Intent(this, ActivityWithNavigationMenuPatient.class);
+        }
+        else if(type.equals("2")){ //push for requesting monthly feedback
+            intent = new Intent(this, MonthWiseFeedbackActivityNew2.class);
+        }
+
+
+        //   Intent intent = new Intent(this, ActivityWithNavigationMenuPatient.class);
+        intent.putExtra("push","1");
+        intent.putExtra("Branch_Id",Branch_Id);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+       // Uri sound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName() + "/" + R.raw.notification_mp3);
+
+        AudioAttributes attributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                .build();
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+
+            final String channelId = "4654644642";
+            final String channelName = "DCDC Kidney Care";
+            final NotificationChannel defaultChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+            defaultChannel.setDescription(title);
+            defaultChannel.enableLights(true);
+          //  defaultChannel.enableVibration(true);
+            defaultChannel.setSound(soundUri, attributes); //
+
+
+
+            manager = (NotificationManager) this.getSystemService(NOTIFICATION_SERVICE);
+            if (manager != null) {
+                manager.createNotificationChannel(defaultChannel);
+            }
+
+
+            stackBuilder = TaskStackBuilder.create(this);
+
+
+            stackBuilder.addNextIntent(intent);
+            pIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+            Notification notification2 = new Notification.Builder(this)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setSmallIcon(R.drawable.logo_192_192)
+                    .setChannelId(channelId)
+                    .setContentIntent(pIntent)
+                    .setOngoing(false)
+                    .setSound(soundUri)
+                    .build();
+
+
+            manager.notify(UTIL.random_number_notificationId(), notification2);
+
+        } else {
+            //Creating Notification Builder
+            notification = new NotificationCompat.Builder(this);
+            //Title for Notification
+            notification.setContentTitle(title);
+            //Message in the Notification
+            notification.setContentText(message);
+            //Alert shown when Notification is received
+            notification.setTicker(message);
+            //Icon to be set on Notification
+            notification  .setSmallIcon(R.drawable.logo_192_192);
+            notification   .setSound(soundUri);
+            /*nks*/
+      /*  notification.setCategory(NotificationCompat.CATEGORY_SERVICE);
+        notification.setPriority(NotificationCompat.PRIORITY_MIN);*/
+            notification.setOngoing(false);
+            /*nks*/
+            //Creating new Stack Builder
+            stackBuilder = TaskStackBuilder.create(this);
+            /*  stackBuilder.addParentStack(Result.class);*/
+            //Intent which is opened when notification is clicked
+
+            stackBuilder.addNextIntent(intent);
+            pIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            notification.setContentIntent(pIntent);
+            manager = (NotificationManager) this.getSystemService(NOTIFICATION_SERVICE);
+            manager.notify(UTIL.random_number_notificationId(), notification.build());
+
+        }
+
+
+    }
     public void UpdateFCMTokenAtServer(
     ) {
         String URL = UTIL.Domain_DCDC + UTIL.FCMTokenUpdate_API;

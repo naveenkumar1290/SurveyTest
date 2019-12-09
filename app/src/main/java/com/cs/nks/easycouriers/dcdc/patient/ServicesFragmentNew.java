@@ -64,38 +64,42 @@ public class ServicesFragmentNew extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         list_ClientUser.add(new OurServices("1","PATIENT CARE",
-                "Dialysis on Wheels as we call it is a specialized service designed for patients and nursing homes that do not have a dialysis setup of their own. A specially equipped Ambulance fitted with all the medical equipments is at your service to perform dialysis at an desired location in the presence of trained paramedical staff.",
+                "Coming Soon!",
                 R.drawable.patient_care));
 
         list_ClientUser.add(new OurServices("1","HEMODIALYSIS",
-                "Dialysis on Wheels as we call it is a specialized service designed for patients and nursing homes that do not have a dialysis setup of their own. A specially equipped Ambulance fitted with all the medical equipments is at your service to perform dialysis at an desired location in the presence of trained paramedical staff.",
+                "Hemodialysis, as the name suggests, is carried out in the patient’s own home by a dialysis technician,the patient himself or a family member.\n" +
+                        "\n" +
+                        "DCDC is the first dialysis institute in the country to offer home hemodialysis to patients at an affordable cost and with no initial investment Evidence from well-planned research studies clearly proves that home hemodialysis patients live longer than patients treated in a dialysis centre. There is also good evidence that the quality of life of these patients is much better.",
                 R.drawable.hemodialysis));
 
 
         list_ClientUser.add(new OurServices("1","PERITONEAL DIALYSIS",
-                "Dialysis on Wheels as we call it is a specialized service designed for patients and nursing homes that do not have a dialysis setup of their own. A specially equipped Ambulance fitted with all the medical equipments is at your service to perform dialysis at an desired location in the presence of trained paramedical staff.",
+                "Peritoneal dialysis is a treatment for kidney failure. A soft plastic tube (catheter) is placed in your belly by surgery. A sterile cleansing fluid is put into your belly through this catheter. After the filtering process is finished, the fluid leaves your body through the catheter. Sounds daunting? Don’t worry DCDC will manage the entire process for you.In the first stage post the Nephrology Consultation the catheter can be placed in a DCDC centre through a simple procedure.\nDCDC will ensure weekly supply of consumables you you.",
                 R.drawable.peritoneal));
 
         list_ClientUser.add(new OurServices("1","HOME DIALYSIS",
-                "Dialysis on Wheels as we call it is a specialized service designed for patients and nursing homes that do not have a dialysis setup of their own. A specially equipped Ambulance fitted with all the medical equipments is at your service to perform dialysis at an desired location in the presence of trained paramedical staff.",
+                "Home Hemodialysis (HHD) is similar to in-center hemodialysis, as both use a machine to filter wastes and fluid from the blood.\n" +
+                        "\n" +
+                        "Home Hemodialysis is typically done 5-6 times a week for 2.5 to 3.5 hours. Because these dialysis treatments are done more frequently than in-centre dialysis, each session takes less time to remove toxins.",
                 R.drawable.homedialysis));
 
 
         list_ClientUser.add(new OurServices("1","TRANSPLANT CLINIC",
-                "Dialysis on Wheels as we call it is a specialized service designed for patients and nursing homes that do not have a dialysis setup of their own. A specially equipped Ambulance fitted with all the medical equipments is at your service to perform dialysis at an desired location in the presence of trained paramedical staff.",
+                "A kidney transplant is a complex and complicated decision and DCDC team will help you navigate choices, setting up appointments with experts and help you choose from any of our partner hospitals. Several of DCDC partner hospitals where DCDC provides in-centre hemodialysis have kidney transplant facilities. This network is available to help you get a kidney transplant at any of these hospitals with minimal hassle.",
                 R.drawable.transplant));
 
         list_ClientUser.add(new OurServices("1","EDUCATION & RESEARCH",
-                "Dialysis on Wheels as we call it is a specialized service designed for patients and nursing homes that do not have a dialysis setup of their own. A specially equipped Ambulance fitted with all the medical equipments is at your service to perform dialysis at an desired location in the presence of trained paramedical staff.",
+                "Coming Soon!",
                 R.drawable.education));
 
 
         list_ClientUser.add(new OurServices("1","DIALYSIS DIET",
-                "Dialysis on Wheels as we call it is a specialized service designed for patients and nursing homes that do not have a dialysis setup of their own. A specially equipped Ambulance fitted with all the medical equipments is at your service to perform dialysis at an desired location in the presence of trained paramedical staff.",
+                "Coming Soon!",
                 R.drawable.dylasis));
 
         list_ClientUser.add(new OurServices("1","PATHOLOGY",
-                "Dialysis on Wheels as we call it is a specialized service designed for patients and nursing homes that do not have a dialysis setup of their own. A specially equipped Ambulance fitted with all the medical equipments is at your service to perform dialysis at an desired location in the presence of trained paramedical staff.",
+                "Coming Soon!",
                 R.drawable.pathology));
 
         mAdapter = new MoviesAdapter(getActivity(), list_ClientUser);

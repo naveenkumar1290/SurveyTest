@@ -19,6 +19,9 @@ package com.cs.nks.easycouriers.place_api.example.android.common.activities;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+//
+// import androidx.fragment.app.FragmentActivity;
+
 import com.cs.nks.easycouriers.place_api.example.android.common.logger.Log;
 import com.cs.nks.easycouriers.place_api.example.android.common.logger.LogWrapper;
 

@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
+import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
 import com.cs.nks.easycouriers.activity.ChangePassword;
 import com.cs.nks.easycouriers.util.AppController;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
@@ -138,9 +139,9 @@ public class LoginFragment extends Fragment implements
                             .show();
                 } else {
                     if (new ConnectionDetector(myContext).isConnectingToInternet()) {
-                        LoginApiCall(user_mobile, user_pwd);
-                        // startActivity(new Intent(myContext, ActivityWithNavigationMenu.class));
-
+                     //   LoginApiCall(user_mobile, user_pwd);
+                         startActivity(new Intent(myContext, ActivityWithNavigationMenuPatient.class));
+                         getActivity().finish();
 
                     } else {
                         Toast.makeText(myContext,
@@ -158,12 +159,14 @@ public class LoginFragment extends Fragment implements
         forget_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String mobile = et_mobile.getText().toString().trim();
+
+                Toast.makeText(getActivity(), "Demo!", Toast.LENGTH_SHORT).show();
+              /*  String mobile = et_mobile.getText().toString().trim();
                 if (mobile.length() != 10) {
                     Toast.makeText(getActivity(), "Please enter registered mobile no.!", Toast.LENGTH_SHORT).show();
                 } else {
                     dialog_mail(mobile);
-                }
+                }*/
 
             }
         });
@@ -279,6 +282,7 @@ public class LoginFragment extends Fragment implements
         try {
             URL_LOGIN = UTIL.Domain_DCDC + UTIL.Login_API + "user_id=" + mobile + "&password=" + password;
             URL_LOGIN = URL_LOGIN.replaceAll(" ", "%20");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -315,14 +319,15 @@ public class LoginFragment extends Fragment implements
 
 
                         if (type.equals("2")) { //Patient
-
-
                             String UserId = jObj.getString("user_id");
                             UTIL.setPref(myContext, UTIL.Key_UserId, UserId);
 
 
                         } else if (type.equals("1")) {  // Admin
                             String UserId = jObj.getString("admin_id");
+                            UTIL.setPref(myContext, UTIL.Key_UserId, UserId);
+                        } else if (type.equals("3")) {  // BranchLocation
+                            String UserId = jObj.getString("user_id");
                             UTIL.setPref(myContext, UTIL.Key_UserId, UserId);
                         }
 
@@ -332,7 +337,7 @@ public class LoginFragment extends Fragment implements
                     } else if (status.equals("0")) {
 
                         Toast.makeText(myContext,
-                                "Wrong mobile number or password", Toast.LENGTH_SHORT).show();
+                                "Wrong user id or password", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(myContext,
@@ -482,6 +487,7 @@ public class LoginFragment extends Fragment implements
                 {
                         Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA,
 
                 }, RequestPermissionCode);
 
@@ -497,8 +503,9 @@ public class LoginFragment extends Fragment implements
 
                     boolean Location = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean WriteExtrenalStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    boolean Camera = grantResults[2] == PackageManager.PERMISSION_GRANTED;
 
-                    if (WriteExtrenalStorage && Location) {
+                    if (WriteExtrenalStorage && Location && Camera) {
 
                         //  Toast.makeText(HomeActivity.this, "Permission Granted", Toast.LENGTH_LONG).show();
                     } else {
@@ -515,10 +522,13 @@ public class LoginFragment extends Fragment implements
 
         int FirstPermissionResult = ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION);
         int SecondPermissionResult = ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int ThirdPermissionResult = ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.CAMERA);
 
         return
                 FirstPermissionResult == PackageManager.PERMISSION_GRANTED &&
-                        SecondPermissionResult == PackageManager.PERMISSION_GRANTED;
+                        SecondPermissionResult == PackageManager.PERMISSION_GRANTED &&
+                        ThirdPermissionResult == PackageManager.PERMISSION_GRANTED
+                ;
     }
 
 }

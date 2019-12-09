@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_person_white_24dp"
+                app:civ_border_color="#FFFFFF"
+                app:civ_border_width="1dp" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom|right"
+                android:src="@drawable/ic_camera_alt_black_24dp"
+                android:tint="@color/primaryTextColor" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="10dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp">
+
+            <EditText
+                android:id="@+id/et_first_name"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/colorAccent"
+                android:gravity="center_vertical"
+                android:hint="First Name"
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/et_height"
+
+
+                />
+
+            <EditText
+                android:id="@+id/et_last_name"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/colorAccent"
+                android:gravity="center_vertical"
+                android:hint="Last Name"
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/et_height"
+
+
+                />
+
+            <EditText
+                android:id="@+id/et_mail"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_mail_black_24dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/colorAccent"
+                android:gravity="center_vertical"
+                android:hint="E-mail"
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/et_height"
+
+
+                />
+
+            <EditText
+                android:id="@+id/et_phone"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_phone_android_grey_24dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/colorAccent"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_vertical"
+                android:hint="Phone"
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/et_height" />
+
+            <EditText
+                android:id="@+id/et_address"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_place_black_24dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/colorAccent"
+                android:gravity="center_vertical"
+                android:hint="Address"
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/et_height"
+                />
+
+
+            <EditText
+                android:id="@+id/et_city"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_location_city_black_24dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/colorAccent"
+                android:gravity="center_vertical"
+                android:hint="City"
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/et_height"
+
+
+                />
+
+            <EditText
+                android:id="@+id/et_pin"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/colorAccent"
+                android:gravity="center_vertical"
+                android:hint="Pin"
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/et_height"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnUpdate"
+        style="@style/CustomButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_size"
+
+        android:background="@drawable/button_shape"
+        android:text="Save" />
+
+</LinearLayout>

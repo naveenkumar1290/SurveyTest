@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenu;
+import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
 import com.cs.nks.easycouriers.activity.ChangePassword;
 import com.cs.nks.easycouriers.util.UTIL;
 
@@ -27,6 +27,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.android.volley.VolleyLog.TAG;
+import static com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient.getReportFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -105,20 +106,26 @@ public class DasboardFragmentNew extends Fragment {
             @Override
             public void onClick(View view) {
 
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new AppointmentFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new AppointmentFragment());
             }
         });
         ll_Schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new ScheduleFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ScheduleFragment());
             }
         });
 
         ll_reports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new Reportfragment());
+
+                String patientId = UTIL.getPref(myContext, UTIL.Key_UserId);
+                Fragment fragment = getReportFragment(patientId, "1");
+
+
+
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(fragment);
             }
         });
         ll_share_app.setOnClickListener(new View.OnClickListener() {
@@ -135,15 +142,15 @@ public class DasboardFragmentNew extends Fragment {
         ll_cntct_us.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new ContactUsFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ContactUsFragment());
 
             }
         });
         ll_about_us.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new AboutUsFragment());
-                ((ActivityWithNavigationMenu) getActivity()).replaceFragmnt(new ServicesFragmentNew());
+                //((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new AboutUsFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ServicesFragmentNew());
 
 
             }
