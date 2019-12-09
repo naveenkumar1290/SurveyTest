@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardElevation="5sp"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/row_jobFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+      <!--  <View
+            android:id="@+id/view1"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="#E4DFDF"
+
+            />
+
+        <Button
+            android:id="@+id/itencount"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="-13dp"
+            android:background="@drawable/round_corner"
+            android:elevation="4dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="1"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            android:textStyle="bold"
+
+            />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:padding="3dp">
+            <TextView
+
+                android:id="@+id/itencount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="right"
+                android:text="1"
+                android:layout_marginBottom="5dp"
+
+                />
+
+
+
+            <EditText
+
+                android:id="@+id/et_worker"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/et_height"
+                android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                android:drawableTint="@color/colorPrimary"
+                android:editable="false"
+
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Type of Worker"
+                android:inputType="none"
+                android:maxLines="1"
+                android:padding="@dimen/et_padding"
+                android:textSize="16sp"
+
+                />
+
+            <EditText
+
+                android:id="@+id/type_labor"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/et_height"
+                android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                android:drawableTint="@color/colorPrimary"
+                android:editable="false"
+
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Type of Labor"
+                android:inputType="none"
+                android:maxLines="1"
+                android:padding="@dimen/et_padding"
+                android:textSize="16sp"
+
+                />
+
+
+            <EditText
+                android:id="@+id/et_workAssigned"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:hint="Work Assigned"
+                android:inputType="text"
+                android:minHeight="@dimen/et_height"
+
+
+                />
+
+
+            <EditText
+                android:id="@+id/et_BrickKilns"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/et_height"
+                android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                android:drawableTint="@color/colorPrimary"
+                android:editable="false"
+
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Brick Kilns"
+                android:inputType="none"
+                android:maxLines="1"
+                android:padding="@dimen/et_padding"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:hint="Name"
+                android:inputType="text"
+                android:minHeight="@dimen/et_height"
+
+
+                />
+
+            <EditText
+                android:id="@+id/et_age"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:hint="Age"
+                android:inputType="text"
+                android:minHeight="@dimen/et_height"
+
+
+                />
+
+            <EditText
+                android:id="@+id/et_gender"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:hint="Gender"
+                android:inputType="text"
+                android:minHeight="@dimen/et_height"
+
+
+                />
+
+            <EditText
+                android:id="@+id/et_Address"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:hint="Address"
+                android:inputType="text"
+                android:minHeight="@dimen/et_height"
+
+
+                />
+
+            <EditText
+
+                android:id="@+id/et_comments"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:hint="Comments"
+
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/et_height"
+
+                />
+
+            <Button
+                android:id="@+id/btn_upload"
+                style="@style/CustomButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btn_size"
+                android:layout_marginTop="@dimen/et_margin_top"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="Upload Photo" />
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

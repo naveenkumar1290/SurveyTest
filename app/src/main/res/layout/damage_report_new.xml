@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_AddItem"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+android:layout_weight="1"
+                android:layout_height="@dimen/btn_size"
+                android:text="Add More"  />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+
+            <Button
+                android:id="@+id/btn_FinishedWithReport"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+android:layout_weight="1"
+                android:layout_height="@dimen/btn_size"
+                android:text="Submit" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+<!--    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_AddItem"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_btn2_new"
+                    android:gravity="center"
+                    android:text="Add Item"
+                    android:textColor="@color/btn_text_sky_blue"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp" />
+
+                <Button
+                    android:id="@+id/btn_FinishedWithReport"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_btn2_new"
+                    android:gravity="center"
+                    android:text="Finished with Report"
+                    android:textColor="@color/btn_text_sky_blue"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>-->
+
+
+
+</LinearLayout>
