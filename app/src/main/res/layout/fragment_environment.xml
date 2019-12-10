@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:padding="10dp"
     android:orientation="vertical">
     <!--
         <ScrollView
@@ -19,7 +19,7 @@
         android:layout_weight="1"
         android:gravity="top"
         android:orientation="vertical"
-        android:padding="10dp">
+       >
 
         <!--<android.support.design.widget.TextInputLayout-->
         <!--android:layout_width="match_parent"-->

@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.dcdc.patient;
+package com.cs.nks.easycouriers.survey;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -27,7 +27,7 @@ import com.cs.nks.easycouriers.util.Utility;
 import java.util.ArrayList;
 
 
-public class Adapter_DamageReport extends RecyclerView.Adapter<Adapter_DamageReport.UserViewHolder> {
+public class Adapter_ReportBondedLabor extends RecyclerView.Adapter<Adapter_ReportBondedLabor.UserViewHolder> {
 
     private static int uploadedImagePos;
     ArrayList<BranchLocation> KilnsTypeList;
@@ -39,7 +39,7 @@ public class Adapter_DamageReport extends RecyclerView.Adapter<Adapter_DamageRep
     private ArrayList<DamageDetail> damageDetailList;
      AlertDialog alertDialog1;
 
-    public Adapter_DamageReport(Context context, ArrayList<DamageDetail> damageDetailList, Fragment fragment) {
+    public Adapter_ReportBondedLabor(Context context, ArrayList<DamageDetail> damageDetailList, Fragment fragment) {
         this.mContext = context;
         this.damageDetailList = damageDetailList;
         this.KilnsTypeList = ItemType.fillKilns();
@@ -105,7 +105,7 @@ public class Adapter_DamageReport extends RecyclerView.Adapter<Adapter_DamageRep
 
         damageDetailList.add(DamageDetail.addDamageDetail());
         notifyDataSetChanged();
-        ((DamageReportNew) fragment).ScrollRecyclerviewToBottom(damageDetailList.size() - 1);
+        ((ReportBondedLabor) fragment).ScrollRecyclerviewToBottom(damageDetailList.size() - 1);
     }
 
     public ArrayList<DamageDetail> returnData() {
@@ -366,7 +366,7 @@ public class Adapter_DamageReport extends RecyclerView.Adapter<Adapter_DamageRep
                         uploadedImagePos = getAdapterPosition();
 
 
-                        ((DamageReportNew) fragment).opendilogforattachfileandimage();
+                        ((ReportBondedLabor) fragment).opendilogforattachfileandimage();
 
                     } else {
                         Toast.makeText(mContext, Utility.NO_INTERNET, Toast.LENGTH_LONG).show();
@@ -378,7 +378,7 @@ public class Adapter_DamageReport extends RecyclerView.Adapter<Adapter_DamageRep
                 @Override
                 public void onClick(View view) {
                    // showDialogNew("Type of Worker", fragment.getActivity(), WorkerTypeList, getAdapterPosition(), 1);
-                    ((DamageReportNew) fragment).  showDialogNew("Type of Worker", fragment.getActivity(), WorkerTypeList, getAdapterPosition(), 1);
+                    ((ReportBondedLabor) fragment).  showDialogNew("Type of Worker", fragment.getActivity(), WorkerTypeList, getAdapterPosition(), 1);
 
                 }
             });
@@ -387,7 +387,7 @@ public class Adapter_DamageReport extends RecyclerView.Adapter<Adapter_DamageRep
                 public void onClick(View view) {
                   //  showDialogNew("Type of Labor", fragment.getActivity(), LaborTypeList, getAdapterPosition(), 2);
 
-                    ((DamageReportNew) fragment).  showDialogNew("Type of Labor", fragment.getActivity(), LaborTypeList, getAdapterPosition(), 2);
+                    ((ReportBondedLabor) fragment).  showDialogNew("Type of Labor", fragment.getActivity(), LaborTypeList, getAdapterPosition(), 2);
                 }
             });
             type_BrickKilns.setOnClickListener(new View.OnClickListener() {
@@ -395,7 +395,7 @@ public class Adapter_DamageReport extends RecyclerView.Adapter<Adapter_DamageRep
                 public void onClick(View view) {
                   //  showDialogNew("Center", fragment.getActivity(), KilnsTypeList, getAdapterPosition(), 3);
 
-                    ((DamageReportNew) fragment).  showDialogNew("Type of Kilns", fragment.getActivity(), KilnsTypeList, getAdapterPosition(), 3);
+                    ((ReportBondedLabor) fragment).  showDialogNew("Assigned Kilns", fragment.getActivity(), KilnsTypeList, getAdapterPosition(), 3);
                 }
             });
 

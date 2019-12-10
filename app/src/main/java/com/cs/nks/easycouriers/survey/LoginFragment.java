@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.fragment;
+package com.cs.nks.easycouriers.survey;
 
 
 import android.Manifest;
@@ -30,8 +30,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
-import com.cs.nks.easycouriers.activity.ChangePassword;
+import com.cs.nks.easycouriers.survey.ActivityWithNavigationMenuPatient;
+import com.cs.nks.easycouriers.survey.ChangePassword;
 import com.cs.nks.easycouriers.util.AppController;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;

@@ -29,13 +29,11 @@ import android.widget.Toast;
 import com.cs.nks.easycouriers.R;
 import com.cs.nks.easycouriers.dcdc.doctor.BranchListfragment;
 import com.cs.nks.easycouriers.dcdc.doctor.DoctorProfilefragment;
-import com.cs.nks.easycouriers.dcdc.doctor.PatientListfragment;
-import com.cs.nks.easycouriers.dcdc.patient.DasboardFragmentAdmin;
+import com.cs.nks.easycouriers.survey.Tab_Login_Register_Activity;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;
 
 import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.KvmSerializable;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
@@ -112,7 +110,7 @@ public class ActivityWithNavigationMenuDoctor extends AppCompatActivity
 
 
 /***********************************************/
-        if (id == R.id.nav_Home) {
+        if (id == R.id.nav_AssignedKilns) {
      //       replaceFragmnt(new PatientListfragment());
             replaceFragmnt(new BranchListfragment());
 

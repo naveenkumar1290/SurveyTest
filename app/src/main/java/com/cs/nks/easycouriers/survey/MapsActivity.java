@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.dcdc.patient;
+package com.cs.nks.easycouriers.survey;
 
 import android.content.Context;
 import android.content.DialogInterface;

@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.activity;
+package com.cs.nks.easycouriers.survey;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,14 +36,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.dcdc.patient.AboutUsFragment;
 import com.cs.nks.easycouriers.dcdc.patient.AppointmentFragment;
-import com.cs.nks.easycouriers.dcdc.patient.DamageReportNew;
 import com.cs.nks.easycouriers.dcdc.patient.DasboardFragmentNew;
-import com.cs.nks.easycouriers.dcdc.patient.EnvironmentFragment;
-import com.cs.nks.easycouriers.dcdc.patient.MapsActivity;
-import com.cs.nks.easycouriers.dcdc.patient.Reportfragment;
-import com.cs.nks.easycouriers.dcdc.patient.ScheduleFragment;
 import com.cs.nks.easycouriers.util.AppController;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;
@@ -70,7 +64,7 @@ public class ActivityWithNavigationMenuPatient extends AppCompatActivity
     int cnt = 0;
 
     public static Fragment getReportFragment(String PatientID, String is_PATIENT_LOGIN) {
-        Reportfragment reportfragment = new Reportfragment();
+        HomeFragment reportfragment = new HomeFragment();
         Bundle bundle = new Bundle();
         bundle.putString(UTIL.PATIENT_ID, PatientID);
         bundle.putString(UTIL.is_PATIENT_LOGIN, is_PATIENT_LOGIN);
@@ -102,15 +96,15 @@ public class ActivityWithNavigationMenuPatient extends AppCompatActivity
         if (new ConnectionDetector(ActivityWithNavigationMenuPatient.this).isConnectingToInternet()) {
       //      new checkVersionUpdate().execute();
         }
-
-        HandleIntent();
+        addScheduleListFragment();
+       // HandleIntent();
       //  UpdateToken();
 
 
     }
 
     private void HandleIntent() {
-        addScheduleListFragment();
+
 
 
       /*  Bundle b = getIntent().getExtras();
@@ -172,7 +166,7 @@ public class ActivityWithNavigationMenuPatient extends AppCompatActivity
     }
 
     public void addScheduleListFragment() {
-        replaceFragmnt(new ScheduleFragment());
+        replaceFragmnt(new AssignedKilnsFragment());
 
     }
 
@@ -180,39 +174,36 @@ public class ActivityWithNavigationMenuPatient extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-
         /*
         Menu menu = navigationView.getMenu();
         menu.add(R.id.group_1, 123, Menu.NONE, "Title1");
         menu.add(R.id.group_1, 124, Menu.NONE, "Title2");
        */
-
         closeDrawer();
         int id = item.getItemId();
         // to not highlight when selected
         //  navigationView.getMenu().getItem(item).setChecked(false);
 
 /***********************************************/
-        if (id == R.id.nav_Home) {
-            //   replaceFragmnt(new DasboardFragment());
-            replaceFragmnt(new ScheduleFragment());
 
-        } else if (id == R.id.nav_book) {
-           // replaceFragmnt(new AppointmentFragment());
-            replaceFragmnt(new DamageReportNew());
-
-        } else if (id == R.id.nav_AboutUs) {
-            replaceFragmnt(new EnvironmentFragment());
-        } else if (id == R.id.nav_HowItWorks) {
-            // replaceFragmnt(new ReportsFragment());
-           // String patientId = UTIL.getPref(myContext, UTIL.Key_UserId);
-           // Fragment fragment = getReportFragment(patientId, "1");
-            replaceFragmnt(new AboutUsFragment());
+        if (id == R.id.nav_Dashboard) {
+            replaceFragmnt(new HomeFragment());
+        }
+        else if (id == R.id.nav_AssignedKilns) {
+            replaceFragmnt(new AssignedKilnsFragment());
+        } else if (id == R.id.nav_ReportBondedLabor) {
+            replaceFragmnt(new ReportBondedLabor());
+        } else if (id == R.id.nav_ReportEnvironment) {
+            replaceFragmnt(new ReportEnvironment());
+        } else if (id == R.id.nav_FAQ) {
+            replaceFragmnt(new FAQFragment());
         } else if (id == R.id.nav_ChangePass) {
-            startActivity(new Intent(ActivityWithNavigationMenuPatient.this, ChangePassword.class));
+            startActivity(
+                    new Intent(ActivityWithNavigationMenuPatient.this, ChangePassword.class));
 
-        } else if (id == R.id.nav_Center) {
-            startActivity(new Intent(ActivityWithNavigationMenuPatient.this, MapsActivity.class));
+        } else if (id == R.id.nav_Map) {
+            startActivity(
+                    new Intent(ActivityWithNavigationMenuPatient.this, MapsActivity.class));
         } else if (id == R.id.nav_logout) {
             dialog_LOGOUT();
         }

@@ -27,8 +27,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -38,10 +36,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.dcdc.patient.MapsActivity;
 import com.cs.nks.easycouriers.model.ImagePath;
 import com.cs.nks.easycouriers.retrofit_multipart.ApiService;
 import com.cs.nks.easycouriers.retrofit_multipart.ProgressRequestBody;
+import com.cs.nks.easycouriers.survey.ActivityWithNavigationMenuPatient;
 import com.cs.nks.easycouriers.util.AppConstants;
 import com.cs.nks.easycouriers.util.CameraUtils;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
@@ -49,7 +47,6 @@ import com.cs.nks.easycouriers.util.UTIL;
 import com.cs.nks.easycouriers.util.Utility;
 import com.darsh.multipleimageselect.activities.AlbumSelectActivity;
 import com.darsh.multipleimageselect.models.Image;
-import com.google.android.gms.maps.model.LatLng;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -57,7 +54,6 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;

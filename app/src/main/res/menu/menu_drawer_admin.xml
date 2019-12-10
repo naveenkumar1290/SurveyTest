@@ -5,7 +5,7 @@
         android:id="@+id/group_1"
         android:checkableBehavior="single">-->
         <item
-            android:id="@+id/nav_Home"
+            android:id="@+id/nav_AssignedKilns"
             android:icon="@drawable/ic_home_blackj_24dp"
             android:title="Dashboard" />
        <!-- <item

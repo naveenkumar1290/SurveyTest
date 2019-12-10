@@ -27,16 +27,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.dcdc.patient.AppointmentFragment;
 import com.cs.nks.easycouriers.dcdc.patient.DasboardFragmentAdmin;
-import com.cs.nks.easycouriers.dcdc.patient.DasboardFragmentNew;
-import com.cs.nks.easycouriers.dcdc.patient.Reportfragment;
-import com.cs.nks.easycouriers.dcdc.patient.ScheduleFragment;
+import com.cs.nks.easycouriers.survey.Tab_Login_Register_Activity;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;
 
 import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.KvmSerializable;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
@@ -114,7 +110,7 @@ public class ActivityWithNavigationMenuAdmin extends AppCompatActivity
 
 
 /***********************************************/
-        if (id == R.id.nav_Home) {
+        if (id == R.id.nav_AssignedKilns) {
             replaceFragmnt(new DasboardFragmentAdmin());
      /*   } else if (id == R.id.nav_book) {
             replaceFragmnt(new AppointmentFragment());

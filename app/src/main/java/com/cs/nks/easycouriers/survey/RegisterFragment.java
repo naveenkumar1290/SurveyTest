@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.fragment;
+package com.cs.nks.easycouriers.survey;
 
 
 import android.content.Context;
@@ -22,8 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
-import com.cs.nks.easycouriers.activity.Tab_Login_Register_Activity;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;

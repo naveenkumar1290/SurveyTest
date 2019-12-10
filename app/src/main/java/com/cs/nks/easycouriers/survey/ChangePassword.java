@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.activity;
+package com.cs.nks.easycouriers.survey;
 
 import android.content.Context;
 import android.content.Intent;

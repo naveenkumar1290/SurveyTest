@@ -45,19 +45,19 @@
         <activity android:name=".activity.MonthWiseFeedbackActivity" />
         <activity android:name=".activity.MonthWiseFeedbackActivityNew" />
         <activity android:name=".activity.MonthWiseFeedbackActivityNew2" />
-        <activity android:name=".dcdc.patient.MapsActivity" />
+        <activity android:name=".survey.MapsActivity" />
         <activity
             android:name=".activity.TestViewPager"
             android:label="@string/title_activity_test_view_pager"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.ChangePassword" />
+        <activity android:name=".survey.ChangePassword" />
         <activity
-            android:name=".activity.Tab_Login_Register_Activity"
+            android:name=".survey.Tab_Login_Register_Activity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBarTab"
             android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- android:windowSoftInputMode="stateAlwaysHidden" -->
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".survey.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
@@ -68,7 +68,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ActivityWithNavigationMenuPatient"
+            android:name=".survey.ActivityWithNavigationMenuPatient"
             android:label="@string/title_activity_home__drawer_"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize">

@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.dcdc.patient;
+package com.cs.nks.easycouriers.survey;
 
 
 import android.app.Activity;
@@ -25,6 +25,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.cs.nks.easycouriers.R;
 import com.cs.nks.easycouriers.activity.UpdateScheduleActivity;
+import com.cs.nks.easycouriers.dcdc.patient.ViewReportActivity;
 import com.cs.nks.easycouriers.model.ClientUserAll;
 import com.cs.nks.easycouriers.util.AppController;
 import com.cs.nks.easycouriers.util.UTIL;
@@ -44,7 +45,7 @@ import static com.android.volley.VolleyLog.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScheduleFragment extends Fragment {
+public class AssignedKilnsFragment extends Fragment {
 
     Context myContext;
     UTIL utill;
@@ -233,7 +234,7 @@ public class ScheduleFragment extends Fragment {
           /*  View itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.row_client_all_user, parent, false);*/
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.row_schedule_1, parent, false);
+                    .inflate(R.layout.row_assigned_kilns, parent, false);
 
             return new MyViewHolder(itemView);
         }

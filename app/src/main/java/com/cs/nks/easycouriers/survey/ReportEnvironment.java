@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.dcdc.patient;
+package com.cs.nks.easycouriers.survey;
 
 
 import android.Manifest;
@@ -40,7 +40,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
 import com.cs.nks.easycouriers.model.BranchLocation;
 import com.cs.nks.easycouriers.place_api.common.activities.SampleActivityBase_New;
 import com.cs.nks.easycouriers.util.AppController;
@@ -85,7 +84,7 @@ import static android.content.Context.LOCATION_SERVICE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EnvironmentFragment extends SampleActivityBase_New implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks, LocationListener {
+public class ReportEnvironment extends SampleActivityBase_New implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks, LocationListener {
 
     public static final Integer GPS_SETTINGS = 0x7;
     static final Integer LOCATION = 0x1;
@@ -129,7 +128,7 @@ public class EnvironmentFragment extends SampleActivityBase_New implements TimeP
     private String provider;
     private FusedLocationProviderClient mFusedLocationClient;
     //boolean ApiCalledSecondTime=false;
-    public EnvironmentFragment() {
+    public ReportEnvironment() {
         // Required empty public constructor
     }
 
@@ -345,7 +344,7 @@ public class EnvironmentFragment extends SampleActivityBase_New implements TimeP
         et_DoctorName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialogNew("Center", getActivity(), et_DoctorName, list_branch);
+                showDialogNew("Kilns", getActivity(), et_DoctorName, list_branch);
             }
         });
 
@@ -365,7 +364,7 @@ public class EnvironmentFragment extends SampleActivityBase_New implements TimeP
 
         Calendar calendar = Calendar.getInstance();
         DatePickerDialog dpd = DatePickerDialog.newInstance(
-                EnvironmentFragment.this,
+                ReportEnvironment.this,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
@@ -389,7 +388,7 @@ public class EnvironmentFragment extends SampleActivityBase_New implements TimeP
         boolean is24HourMode = true;
         final Calendar calendar = Calendar.getInstance();
         TimePickerDialog tpd = TimePickerDialog.newInstance(
-                EnvironmentFragment.this,
+                ReportEnvironment.this,
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
                 true);
@@ -605,7 +604,7 @@ public class EnvironmentFragment extends SampleActivityBase_New implements TimeP
                                 //  getActivity().finish();
                               /*  Intent i = new Intent(getActivity(), ActivityWithNavigationMenuPatient.class);
                                 startActivity(i);*/
-                                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ScheduleFragment());
+                                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new AssignedKilnsFragment());
 
                             } else {
                                 Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();

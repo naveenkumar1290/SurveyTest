@@ -40,9 +40,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
+import com.cs.nks.easycouriers.survey.ActivityWithNavigationMenuPatient;
 import com.cs.nks.easycouriers.model.BranchLocation;
 import com.cs.nks.easycouriers.place_api.common.activities.SampleActivityBase_New;
+import com.cs.nks.easycouriers.survey.AssignedKilnsFragment;
 import com.cs.nks.easycouriers.util.AppController;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;
@@ -635,7 +636,7 @@ public class AppointmentFragment extends SampleActivityBase_New implements TimeP
                                 //  getActivity().finish();
                               /*  Intent i = new Intent(getActivity(), ActivityWithNavigationMenuPatient.class);
                                 startActivity(i);*/
-                                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ScheduleFragment());
+                                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new AssignedKilnsFragment());
 
                             } else {
                                 Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();

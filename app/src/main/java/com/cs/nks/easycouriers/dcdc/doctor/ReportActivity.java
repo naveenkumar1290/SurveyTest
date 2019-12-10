@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.cs.nks.easycouriers.R;
 import com.cs.nks.easycouriers.util.UTIL;
 
-import static com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient.getReportFragment;
+import static com.cs.nks.easycouriers.survey.ActivityWithNavigationMenuPatient.getReportFragment;
 
 public class ReportActivity extends AppCompatActivity {
 

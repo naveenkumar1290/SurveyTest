@@ -4,20 +4,27 @@
     <group
         android:id="@+id/group_1"
         android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_Home"
+            android:id="@+id/nav_Dashboard"
+            android:icon="@drawable/ic_home_blackj_24dp"
+            android:title="Dashboard"
+
+            />
+        <item
+            android:id="@+id/nav_AssignedKilns"
             android:icon="@drawable/ic_home_blackj_24dp"
             android:title="Assigned Kilns"
 
             />
         <item
-            android:id="@+id/nav_book"
+            android:id="@+id/nav_ReportBondedLabor"
             android:icon="@drawable/ic_local_hospital_black_24dp"
             android:title="Report Bonded Labor"
             android:visible="true"
             />
         <item
-            android:id="@+id/nav_AboutUs"
+            android:id="@+id/nav_ReportEnvironment"
             android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
             android:title="Report Environment"
             android:visible="true"
@@ -26,14 +33,14 @@
 
 
         <item
-            android:id="@+id/nav_Center"
+            android:id="@+id/nav_Map"
             android:icon="@drawable/ic_location_on_black_24dp"
             android:title="View on Map"
             android:visible="true"
             />
 
         <item
-            android:id="@+id/nav_HowItWorks"
+            android:id="@+id/nav_FAQ"
             android:icon="@drawable/ic_assignment_black_24dp"
             android:title="FAQ"
             android:visible="true"

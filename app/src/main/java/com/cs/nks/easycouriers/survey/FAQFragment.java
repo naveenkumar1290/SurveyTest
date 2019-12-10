@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.dcdc.patient;
+package com.cs.nks.easycouriers.survey;
 
 
 import android.content.Context;
@@ -17,7 +17,7 @@ import java.util.Timer;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AboutUsFragment extends Fragment {
+public class FAQFragment extends Fragment {
 
     Context myContext;
     UTIL utill;
@@ -25,7 +25,7 @@ public class AboutUsFragment extends Fragment {
     private int currentPage = 0;
     private ViewPager mViewPager;
 
-    public AboutUsFragment() {
+    public FAQFragment() {
         // Required empty public constructor
     }
 

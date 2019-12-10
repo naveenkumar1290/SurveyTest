@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
+import com.cs.nks.easycouriers.survey.ActivityWithNavigationMenuPatient;
+import com.cs.nks.easycouriers.survey.AssignedKilnsFragment;
 import com.cs.nks.easycouriers.util.UTIL;
 
 import java.util.Timer;
@@ -65,7 +66,7 @@ LinearLayout ll_reports,ll_Appointment,ll_Schedule,ll_log;
         ll_Schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ScheduleFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new AssignedKilnsFragment());
             }
         });
         ll_log.setOnClickListener(new View.OnClickListener() {

@@ -19,15 +19,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
-import com.cs.nks.easycouriers.activity.ChangePassword;
+import com.cs.nks.easycouriers.survey.ActivityWithNavigationMenuPatient;
+import com.cs.nks.easycouriers.survey.AssignedKilnsFragment;
+import com.cs.nks.easycouriers.survey.ChangePassword;
 import com.cs.nks.easycouriers.util.UTIL;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.android.volley.VolleyLog.TAG;
-import static com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient.getReportFragment;
+import static com.cs.nks.easycouriers.survey.ActivityWithNavigationMenuPatient.getReportFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -112,7 +113,7 @@ public class DasboardFragmentNew extends Fragment {
         ll_Schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new ScheduleFragment());
+                ((ActivityWithNavigationMenuPatient) getActivity()).replaceFragmnt(new AssignedKilnsFragment());
             }
         });
 

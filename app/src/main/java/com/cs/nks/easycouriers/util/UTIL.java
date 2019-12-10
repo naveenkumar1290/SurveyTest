@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuPatient;
+import com.cs.nks.easycouriers.survey.ActivityWithNavigationMenuPatient;
 import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuAdmin;
 import com.cs.nks.easycouriers.activity.ActivityWithNavigationMenuDoctor;
 

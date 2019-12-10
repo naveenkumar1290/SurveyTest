@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.dcdc.patient;
+package com.cs.nks.easycouriers.survey;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -10,16 +10,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,10 +24,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.cs.nks.easycouriers.R;
 import com.cs.nks.easycouriers.model.BranchLocation;
 import com.cs.nks.easycouriers.model.DamageDetail;
@@ -41,33 +36,19 @@ import com.cs.nks.easycouriers.util.CameraUtils;
 import com.cs.nks.easycouriers.util.Utility;
 import com.darsh.multipleimageselect.activities.AlbumSelectActivity;
 import com.darsh.multipleimageselect.models.Image;
-import com.wdullaer.materialdatetimepicker.Utils;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-
-import okhttp3.MultipartBody;
-import okhttp3.ResponseBody;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
 
-public class DamageReportNew extends SampleActivityBase_New implements ProgressRequestBody.UploadCallbacks{
+public class ReportBondedLabor extends SampleActivityBase_New implements ProgressRequestBody.UploadCallbacks{
 
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     private static String imageStoragePath;
-    Adapter_DamageReport userAdapter;
+    Adapter_ReportBondedLabor userAdapter;
     ArrayList<String> list_path = new ArrayList<>();
 
     ProgressDialog uploadProgressDialog;
@@ -99,7 +80,7 @@ public class DamageReportNew extends SampleActivityBase_New implements ProgressR
         recycler = rootView.findViewById(R.id.recycler);
         recycler.setLayoutManager(new LinearLayoutManager(mContext));
 
-        userAdapter = new Adapter_DamageReport(mContext, damageDetailList,this);
+        userAdapter = new Adapter_ReportBondedLabor(mContext, damageDetailList,this);
         recycler.setAdapter(userAdapter);
         Button btn_add = rootView.findViewById(R.id.btn_AddItem);
         Button btn_getData = rootView.findViewById(R.id.btn_FinishedWithReport);

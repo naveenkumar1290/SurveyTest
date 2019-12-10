@@ -1,4 +1,4 @@
-package com.cs.nks.easycouriers.dcdc.patient;
+package com.cs.nks.easycouriers.survey;
 
 
 import android.app.Activity;
@@ -54,7 +54,7 @@ import static com.android.volley.VolleyLog.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Reportfragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     Context myContext;
     UTIL utill;
@@ -75,7 +75,7 @@ public class Reportfragment extends Fragment {
         // Inflate the layout for this fragment
 
         View rootView = inflater.inflate(R.layout.fragment_about_us, container, false);
-        getActivity().setTitle("Reports");
+        getActivity().setTitle("Dashboard");
         myContext = getActivity();
         util = new UTIL(getActivity());
         setView(rootView);
@@ -121,7 +121,7 @@ public class Reportfragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (new ConnectionDetector(getActivity()).isConnectingToInternet()) {
-            getSchedule();
+            //getSchedule();
         } else {
             Toast.makeText(getActivity(), "No internet", Toast.LENGTH_SHORT).show();
         }
@@ -461,7 +461,7 @@ public class Reportfragment extends Fragment {
           /*  View itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.row_client_all_user, parent, false);*/
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.row_schedule_1, parent, false);
+                    .inflate(R.layout.row_dashboard, parent, false);
 
             return new MyViewHolder(itemView);
         }
@@ -486,45 +486,11 @@ public class Reportfragment extends Fragment {
                 holder.remarks.setText(projectPhoto.getMasterName());
             }
 
-            String status = projectPhoto.getCaType();
-            String txt_status = "----";
-            // txtvw_status
-            if (status.equals("2")) {   // Approved
-                holder.column.setBackgroundColor(getResources().getColor(R.color.green_material2));
-                txt_status = "Approved";
-            } else if (status.equals("1")) { // Under Process
-                holder.column.setBackgroundColor(getResources().getColor(R.color.yellow_material));
-                txt_status = "Under Process";
-            } else if (status.equals("3")) { // Rejected
-                holder.column.setBackgroundColor(getResources().getColor(R.color.red_material));
-                txt_status = "Rejected";
-            } else if (status.equals("4")) {// Date expired
-                holder.column.setBackgroundColor(getResources().getColor(R.color.orange_material));
-                txt_status = "Date Expired";
-
-            } else if (status.equals("5")) {// Dialysis Done
-                holder.column.setBackgroundColor(getResources().getColor(R.color.green_material2));
-                txt_status = "Completed";
-            }
-            holder.Status.setText(txt_status);
-            holder.txtvw_status.setText(txt_status);
 
 
-            if (status.equals("5")) {// Completed-Dialysis Done
-                holder.btn_Report.setVisibility(View.VISIBLE);
-                holder.imgvw_delete.setVisibility(View.GONE);
-                holder.imgvw_edit.setVisibility(View.GONE);
-                if (is_PATIENT_LOGIN.equals("1")) {
-                    holder.btn_feedback.setVisibility(View.VISIBLE);
-                } else {  // for doc login
-                    holder.btn_feedback.setVisibility(View.GONE);
-                }
-            } else {
-                holder.btn_Report.setVisibility(View.GONE);
-                holder.imgvw_delete.setVisibility(View.VISIBLE);
-                holder.imgvw_edit.setVisibility(View.VISIBLE);
-                holder.btn_feedback.setVisibility(View.GONE);
-            }
+
+
+
 
                /* if (Descr == null || Descr.trim().equals("")) {
                 holder.tv_status.setText("Not available");
