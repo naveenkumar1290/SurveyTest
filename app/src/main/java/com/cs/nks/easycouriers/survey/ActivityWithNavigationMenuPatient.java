@@ -166,7 +166,7 @@ public class ActivityWithNavigationMenuPatient extends AppCompatActivity
     }
 
     public void addScheduleListFragment() {
-        replaceFragmnt(new AssignedKilnsFragment());
+        replaceFragmnt(new HomeFragment());
 
     }
 

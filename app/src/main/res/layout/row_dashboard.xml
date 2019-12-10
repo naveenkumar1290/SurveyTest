@@ -32,69 +32,78 @@
             <!-- android:background="@color/colorAccent"-->
             <!--android:background="@color/colorPrimary"-->
 
+
             <TextView
-                android:id="@+id/txtvw_status"
-                android:layout_width="wrap_content"
+                android:id="@+id/serial_no"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:text="1"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:visibility="gone" />
-
+                android:textSize="17sp" />
 
             <LinearLayout
+                android:id="@+id/ll_sync_now"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <ImageView
+                    android:id="@+id/sync"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_sync_black_24dp" />
 
                 <TextView
-                    android:id="@+id/serial_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
 
-                    android:text="1"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="Today"
+                    android:text="Sync Now"
                     android:textColor="@android:color/white"
                     android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
-
+android:id="@+id/ll_synced"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/name"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="8 Dec 2018"
+                    android:layout_marginTop="2dp"
+                    android:text="Synced on"
                     android:textColor="@android:color/white"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/user_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:gravity="center"
-                    android:text="06:30 PM"
+                    android:text="Last Update"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/synced_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
+                    android:text="08-12-2020 06:30 PM"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -109,35 +118,12 @@
             android:orientation="vertical"
             android:padding="5dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <TextView
-                    style="@style/CustomTextView_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-
-                    android:text="Status" />
-
-                <TextView
-                    android:id="@+id/Status"
-                    style="@style/CustomTextView_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="N/A" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
+
                 android:orientation="horizontal">
 
                 <TextView
@@ -146,10 +132,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="left"
-                    android:text="Center" />
+                    android:text="Assigned Kilns" />
 
                 <TextView
-                    android:id="@+id/center"
+                    android:id="@+id/AssignedKilns"
                     style="@style/CustomTextView_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -170,216 +156,41 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="left"
-                    android:text="Address" />
+                    android:text="Assigned on" />
 
                 <TextView
-                    android:id="@+id/address"
+                    android:id="@+id/AssignedDate"
                     style="@style/CustomTextView_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="N/A" />
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <TextView
-                    style="@style/CustomTextView_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:gravity="left"
-                    android:text="Remarks" />
-
-                <TextView
-                    android:id="@+id/remarks"
-                    style="@style/CustomTextView_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="N/A" />
-            </LinearLayout>
-            <!-- <Button
-                 android:id="@+id/btn_Report"
-                 style="@style/CustomButtonStyle"
-                 android:layout_width="match_parent"
-                 android:layout_height="30dp"
-                 android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
-                 android:background="@drawable/button_shape_row"
-                 android:text="View Report"
-
-                 android:textAllCaps="false" />-->
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
-                android:gravity="center"
-
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/imgvw_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="16dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_navigation_black_24dp"
-                        android:tint="@color/colorAccent" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imgvw_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/delete_3"
-                        android:tint="@color/colorAccent"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btn_Report"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <ImageView
-
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-
-                        android:src="@drawable/notebook"
-                        android:tint="@color/colorAccent" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btn_feedback"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <ImageView
-
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-
-                        android:src="@drawable/ic_feedback_black_24dp"
-                        android:tint="@color/colorAccent" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
-                android:layout_marginBottom="@dimen/list_showFile_rowTopMargin"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
                 <TextView
                     style="@style/CustomTextView_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Day" />
+                    android:gravity="left"
+                    android:text="Visited on" />
 
                 <TextView
-                    android:id="@+id/masterl"
+                    android:id="@+id/VisitDate"
                     style="@style/CustomTextView_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tuesday" />
+                    android:gravity="left"
+                    android:text="N/A" />
             </LinearLayout>
 
-            <!--  <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
-                  android:orientation="horizontal">
-
-                  <TextView
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                      android:text="Phone"
-                      style="@style/CustomTextView_title" />
-
-                  <TextView
-                      android:id="@+id/phone"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:text=""
-                      style="@style/CustomTextView_text" />
-              </LinearLayout>
-
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
-                  android:orientation="horizontal">
-
-                  <TextView
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                      android:text="E-mail"
-                      style="@style/CustomTextView_title" />
-
-                  <TextView
-                      android:id="@+id/email"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:text=""
-                      style="@style/CustomTextView_text" />
-              </LinearLayout>
-
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="@dimen/list_showFile_rowTopMargin"
-                  android:layout_marginTop="@dimen/list_showFile_rowTopMargin"
-                  android:orientation="horizontal"
-
-                  >
-
-
-                  &lt;!&ndash; <CheckBox
-                       android:id="@+id/checkBox"
-                       android:layout_width="25dp"
-                       android:layout_height="25dp"
-
-                       android:text="" />
-   &ndash;&gt;
-
-              </LinearLayout>
-  -->
 
         </LinearLayout>
 

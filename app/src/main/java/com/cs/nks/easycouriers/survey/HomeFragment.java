@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,10 +30,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cs.nks.easycouriers.R;
-import com.cs.nks.easycouriers.activity.FeedbackActivity;
 import com.cs.nks.easycouriers.activity.FullscreenWebView;
-import com.cs.nks.easycouriers.activity.UpdateScheduleActivity;
 import com.cs.nks.easycouriers.model.ClientUserAll;
+import com.cs.nks.easycouriers.model.Dashboard;
 import com.cs.nks.easycouriers.util.AppController;
 import com.cs.nks.easycouriers.util.ConnectionDetector;
 import com.cs.nks.easycouriers.util.UTIL;
@@ -64,6 +64,7 @@ public class HomeFragment extends Fragment {
     UTIL util;
     AlertDialog alertDialog;
     String patientId = "", is_PATIENT_LOGIN = "";
+    ArrayList<Dashboard> dashboardArrayList = new ArrayList<>();
     private int currentPage = 0;
     private ViewPager mViewPager;
     private RecyclerView recyclerView;
@@ -103,14 +104,17 @@ public class HomeFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-      /*  list_ClientUser.add(new ClientUserAll("1", "21 Dec 2018", "12:55 AM", "Today", "Delhi", "Rohtak Road,Peeragarhi,Delhi,110041", "5", "", ""));
-        list_ClientUser.add(new ClientUserAll("1", "10 Dec 2018", "01:05 PM", "Tuesday", "Noida", "Sector-8, Industrial Area,Noida,201301", "5", "", ""));
-        list_ClientUser.add(new ClientUserAll("1", "01 Oct 2018", "02:10 AM", "Wednesday", "Gurgaon", "DLF Tower,Gurgaon,Haryana,110038", "5", "", ""));
-        list_ClientUser.add(new ClientUserAll("1", "21 Sep 2018", "02:10 PM", "Thursday", "Gurgaon", "DLF Tower,Gurgaon,Haryana,110038", "4", "", ""));
-        list_ClientUser.add(new ClientUserAll("1", "10 Sep 2018", "02:10 PM", "Thursday", "Gurgaon", "DLF Tower,Gurgaon,Haryana,110038", "4", "", ""));
-
-        mAdapter = new MoviesAdapter(getActivity(), list_ClientUser);
-        recyclerView.setAdapter(mAdapter);*/
+        dashboardArrayList.add(new Dashboard("kilns 1", "11 Dec 2018", "12 Dec 2018", "12 Dec 2018", false));
+        dashboardArrayList.add(new Dashboard("kilns 2", "12 Dec 2018", "13 Dec 2018", "14 Dec 2018", true));
+        dashboardArrayList.add(new Dashboard("kilns 3", "13 Dec 2018", "14 Dec 2018", "15 Dec 2018", false));
+        dashboardArrayList.add(new Dashboard("kilns 4", "14 Dec 2018", "15 Dec 2018", "18 Dec 2018", true));
+        dashboardArrayList.add(new Dashboard("kilns 5", "15 Dec 2018", "16 Dec 2018", "20 Dec 2018", true));
+        dashboardArrayList.add(new Dashboard("kilns 6", "16 Dec 2018", "17 Dec 2018", "22 Dec 2018", true));
+        dashboardArrayList.add(new Dashboard("kilns 7", "17 Dec 2018", "18 Dec 2018", "25 Dec 2018", false));
+        dashboardArrayList.add(new Dashboard("kilns 8", "18 Dec 2018", "19 Dec 2018", "27 Dec 2018", true));
+        dashboardArrayList.add(new Dashboard("kilns 1", "21 Dec 2018", "21 Dec 2018", "28 Dec 2018", true));
+        mAdapter = new MoviesAdapter(getActivity(), dashboardArrayList);
+        recyclerView.setAdapter(mAdapter);
 
 
         //  getSchedule();
@@ -160,7 +164,7 @@ public class HomeFragment extends Fragment {
                                     //  String status = jsonObject.getString("status");
                                     String day = jsonObject.getString("day");
                                     String city = jsonObject.getString("city_name");
-                                  //  String address = "";
+                                    //  String address = "";
 
                                     String address = jsonObject.getString("address");
                                     String status_id = jsonObject.getString("status_id");
@@ -199,7 +203,7 @@ public class HomeFragment extends Fragment {
                         } catch (Exception e) {
                             e.getCause();
                         }
-                        mAdapter = new MoviesAdapter(getActivity(), list_ClientUser);
+                       // mAdapter = new MoviesAdapter(getActivity(), list_ClientUser);
                         recyclerView.setAdapter(mAdapter);
                         if (list_ClientUser.size() < 1) {
                             tv_msg.setVisibility(View.VISIBLE);
@@ -448,10 +452,10 @@ public class HomeFragment extends Fragment {
     }
 
     public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> {
-        private List<ClientUserAll> moviesList;
+        private List<Dashboard> moviesList;
         //   private HttpImageManager mHttpImageManager;
 
-        public MoviesAdapter(Activity context, List<ClientUserAll> moviesList) {
+        public MoviesAdapter(Activity context, List<Dashboard> moviesList) {
             this.moviesList = moviesList;
             //     mHttpImageManager = ((AppController) context.getApplication()).getHttpImageManager();
         }
@@ -468,84 +472,27 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final MyViewHolder holder, int position) {
-            final ClientUserAll projectPhoto = moviesList.get(position);
+            final Dashboard projectPhoto = moviesList.get(position);
             holder.index_no.setText(String.valueOf(position + 1));
 
 
-            holder.date.setText(projectPhoto.getTxt_Mail()); //date
-            holder.time.setText(projectPhoto.getCompID());//time
-            //   holder.day.setText(projectPhoto.getCompName());//day
-            holder.center.setText(projectPhoto.getUserName());//center
-            holder.address.setText(projectPhoto.getUserCategory());//center
-            holder.day1.setText(projectPhoto.getCompName());//center
-            if (projectPhoto.getMasterName() == null ||
-                    projectPhoto.getMasterName().equalsIgnoreCase("null") ||
-                    projectPhoto.getMasterName().trim().equals("")) {
-                holder.remarks.setText("N/A");
-            } else {
-                holder.remarks.setText(projectPhoto.getMasterName());
+            holder.AssignedKilns.setText(projectPhoto.getAssignedKilns()); //date
+            holder.AssignedDate.setText(projectPhoto.getAssignedDate());//time
+            holder.VisitDate.setText(projectPhoto.getVisitDate());//time
+            holder.synced_date.setText(projectPhoto.getSyncedDate());//time
+            if (projectPhoto.isSyncStatus()) {
+                holder. ll_sync_now.setVisibility(View.GONE);
+                holder. ll_synced.setVisibility(View.VISIBLE);
+            }else {
+                holder. ll_sync_now.setVisibility(View.VISIBLE);
+                holder. ll_synced.setVisibility(View.GONE);
             }
 
 
-
-
-
-
-
-               /* if (Descr == null || Descr.trim().equals("")) {
-                holder.tv_status.setText("Not available");
-            } else {
-                holder.tv_status.setText(Descr);
-            }*/
-
-            holder.imgvw_edit.setOnClickListener(new View.OnClickListener() {
+            holder.ll_sync_now.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(), UpdateScheduleActivity.class);
-                    intent.putExtra("flag", "1");
-                    intent.putExtra("appointment_Id", projectPhoto.getUserID());
-                    intent.putExtra("Date", projectPhoto.getTxt_Mail());
-                    intent.putExtra("Timeing_From", projectPhoto.getCompID());
-                    intent.putExtra("Timeing_To", projectPhoto.gettxt_Mobile());
-                    startActivity(intent);
-                }
-            });
-            holder.imgvw_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    Intent intent = new Intent(getActivity(), UpdateScheduleActivity.class);
-                    intent.putExtra("flag", "2");
-                    intent.putExtra("appointment_Id", projectPhoto.getUserID());
-                    intent.putExtra("Date", projectPhoto.getTxt_Mail());
-                    intent.putExtra("Timeing_From", projectPhoto.getCompID());
-                    intent.putExtra("Timeing_To", projectPhoto.gettxt_Mobile());
-                    startActivity(intent);
-
-                }
-            });
-            holder.btn_Report.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                   /* String url=UTIL.Domain_DCDC+"dcdc_web_service/reports/"+ projectPhoto.getReport();
-                    Intent intent = new Intent(getActivity(), FullscreenWebView.class);
-                    intent.putExtra("url", url);
-                    startActivity(intent);*/
-                    String appointmentID = projectPhoto.getUserID();
-                    dialog_Report_type(appointmentID);
-
-                }
-            });
-            holder.btn_feedback.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(), FeedbackActivity.class);
-
-                    //    Intent intent = new Intent(getActivity(), MonthWiseFeedbackActivityNew2.class);
-                    intent.putExtra("appointment_Id", projectPhoto.getUserID());
-                    intent.putExtra("branch_id", projectPhoto.getBranch_id());
-
-                    startActivity(intent);
+                    Toast.makeText(getActivity(),"Sync started!",Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -558,40 +505,27 @@ public class HomeFragment extends Fragment {
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
-            TextView date, time, phone, email, center, address, day1, Status, remarks, txtvw_status;
-            LinearLayout imgvw_edit, imgvw_delete, btn_Report, btn_feedback;
-            TextView index_no;
 
-            //  Button   btn_Report;
-            LinearLayout parentView, column;
+
+            TextView index_no;
+            LinearLayout column;
+            ImageView sync;
+            TextView AssignedKilns, AssignedDate, VisitDate, synced_date;
+            LinearLayout ll_sync_now, ll_synced;
 
             public MyViewHolder(View convertview) {
                 super(convertview);
 
-                parentView = convertview.findViewById(R.id.row_jobFile);
-
-
+                sync = convertview.findViewById(R.id.sync);
                 index_no = convertview.findViewById(R.id.serial_no);
-                remarks = (TextView) convertview.findViewById(R.id.remarks);
-                date = (TextView) convertview.findViewById(R.id.name);
-                time = (TextView) convertview.findViewById(R.id.user_type);
-                //    day = (TextView) convertview.findViewById(R.id.masterl);
-            /*  phone = (TextView) convertview.findViewById(R.id.phone);
-               email = (TextView) convertview.findViewById(R.id.email);*/
-                imgvw_edit = convertview.findViewById(R.id.imgvw_edit);
-
-                imgvw_delete = convertview.findViewById(R.id.imgvw_delete);
-
-                center = (TextView) convertview.findViewById(R.id.center);
-                address = (TextView) convertview.findViewById(R.id.address);
-                day1 = (TextView) convertview.findViewById(R.id.day);
-
+                AssignedKilns = (TextView) convertview.findViewById(R.id.AssignedKilns);
+                AssignedDate = (TextView) convertview.findViewById(R.id.AssignedDate);
+                VisitDate = (TextView) convertview.findViewById(R.id.VisitDate);
+                synced_date = convertview.findViewById(R.id.synced_date);
+                ll_sync_now = convertview.findViewById(R.id.ll_sync_now);
+                ll_synced = convertview.findViewById(R.id.ll_synced);
                 column = convertview.findViewById(R.id.column);
-                btn_Report = convertview.findViewById(R.id.btn_Report);
 
-                btn_feedback = convertview.findViewById(R.id.btn_feedback);
-                Status = (TextView) convertview.findViewById(R.id.Status);
-                txtvw_status = (TextView) convertview.findViewById(R.id.txtvw_status);
 
             }
         }
